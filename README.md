@@ -1,11 +1,13 @@
 # TypeJumper
 
 Welcome to TypeJumper.
+
 In this game, users will be able to control their character to jump from one platform to another by correctly typing the words under the platform. The goal is to score as many points as possible by correctly typing the words - point-value is based on word length.
 Users will be able to choose their difficulty, which will affect the length of the words. Each new game will start with 3 hearts, 1 lost for every incorrect letter input.
 The user cannot lose hearts on consecutive key presses (e.g. if the word is 'globe' and the user accidentally presses the keys 'g-k-l-o', only one life will be lost so that one typo does not cascade into an immediate elimination.
 
 This JavaScript project will incorporate the fundamentals of object-oriented programming to provide a dynamic experience by utilizing Canvas, Webpack, and DOM manipulation.
+
 The gameplay and platforming is inspired by the classic typing game, TypeRacer, and the famous iOS game, Doodle Jump.
 
 
