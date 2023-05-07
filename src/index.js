@@ -20,8 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // for testing purposes only
     const player = new Player
     player.draw(ctx)
-    const platform = new Platform({x:300, y:550})
-    platform.draw(ctx)
+    const platforms = [new Platform({x:280, y:550}), new Platform({x:550, y: 280})]
+    
+    platforms.forEach(platform => {
+        platform.draw(ctx);
+    })
     // that ^ should eventually get included in the following:
     // const game = new Game(); 
     // new Gameplay(game, ctx).start();
