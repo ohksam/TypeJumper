@@ -3,6 +3,7 @@ class Gameplay {
     constructor(game, ctx) {
         this.game = game;
         this.ctx = ctx;
+        this.player = this.player.addPlayer();
     }
 
     //
