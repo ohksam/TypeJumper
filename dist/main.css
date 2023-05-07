@@ -6,6 +6,18 @@
   padding: 20px;
 }
 
-#main {
-  color: purple;
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+}
+
+#canvas-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

@@ -1,29 +1,29 @@
 // this is your entry file - this is what Webpack will read
-// import Example from './scripts/example';
-// import stuff from somewhere
-// import TyperJump from './scripts/game';
+
+import Player from "./scripts/player";
+import Platform from "./scripts/platform";
+// ^for testing purposes rn. get rid of those once you have things properly imported and set in Game/Gameplay
+// import Game from './scripts/game";
+// import Gameplay from "./scripts/gameplay";
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     console.log('hello world')
-
-//     const main = document.getElementById('main');
-//     new Example(main)
-
-// })
-
-
-// now beginning with mario tutorial!
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
 
-    console.log(ctx)
-
-    canvas.width = 480;
-    canvas.height = 640;
+    canvas.width = 1000;  // optimize this for 13-inch macbook pro when the
+    canvas.height = 620;  // time comes
 
     ctx.fillStyle = "#81D5FF";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // for testing purposes only
+    const player = new Player
+    player.draw(ctx)
+    const platform = new Platform({x:300, y:550})
+    platform.draw(ctx)
+    // that ^ should eventually get included in the following:
+    // const game = new Game(); 
+    // new Gameplay(game, ctx).start();
 })
+

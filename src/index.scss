@@ -1,5 +1,29 @@
 @import "./styles/example.scss";
 
-#main {
-    color: $color;
+h1 {
+    display: flex;
+    justify-content: center;
 }
+
+p {
+    display: flex;
+    justify-content: center;
+}
+
+// canvas {
+//     display: flex;
+//     position: fixed;
+//     left: 100px;
+//     align-self: center;
+//     justify-content: center;
+// }
+
+#canvas-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+ }
+ 
+//  canvas {
+//     display: inline;
+//  }
