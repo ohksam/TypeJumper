@@ -6,6 +6,14 @@ class Gameplay {
         this.player = this.player.addPlayer();
     }
 
+    static scrollSpeed = 0.5
+
+    animate(ctx) {   // 
+        this.drawBackground(ctx); // this should draw the canvas
+        this.moveObjects();       // this should update all objects position by the scrollSpeed
+        this.drawObjects(ctx);    // and this should re-draw all objects after having been scrolled
+    }
+
     //
     // ***REMEMBER THAT THIS IS ALL PLAGIARIZED AT THE MOMENT. MAKE IT YOUR OWN***
     //
