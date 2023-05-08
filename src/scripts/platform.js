@@ -1,27 +1,30 @@
+import Word from './word'
+
 class Platform {
-    static BASE = 30;
+    static START_X = 200;
+    static BASE_Y = 30;
     static HEIGHT = 20;
     static WIDTH = 250;
     static COUNT = 3; //this should probably be in Game.
 
-    constructor(ctx, word) {
-        this.word = word;
-        this.ctx = ctx;
-        // this.position = {
-        //     x,
-        //     y
-        // }
+    constructor(word, position) {
+        this.word = new Word(word, position);
+        this.position = {
+            x: position.x,
+            y: position.y
+        }
         // this.width = 250
         // this.height = 20
     }
 
     // platforms = []; // confused here because when gameplay draws these, it'll have 2 hard-coded platforms to start with
 
-    draw() { // do i want to pass platform.draw a position as parameter?
+    draw(ctx) { // do i want to pass platform.draw a position as parameter?
         // debugger
-        this.ctx.fillStyle = "#DEFF55"
-        this.ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
-        // throw in word drawing logic here too.
+        ctx.fillStyle = "#DEFF55"
+        ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
+        // throw in word drawing logic here too
+        this.word.draw(ctx)
     } 
 
 }

@@ -1,18 +1,21 @@
+import Platform from "./platform";
 
 class Word {
-    constructor(string) {
-        // this.word = word;
+    constructor(string, position) {
         // how do I attach the most recent word to the most recent platform?
         // maybe export every object's draw function to gameplay and then have gameplay feed word.draw the position of the last platform?
+
         // this.position = {
         //     x: somePlatform.position.x,
         //     y: somePlatform.position.y
         // }
-        this.position = {
-            x: 280,
-            y: 570
-        }
+
         this.string = string;
+        this.position = {
+            x: position.x,
+            y: position.y
+        }
+        // console.log(this.position)
     }
 
     //wordbank has ~100 words for now.  WHAT AN EYESORE
@@ -29,23 +32,27 @@ class Word {
 
     draw(ctx) {
         ctx.font = '32px Cursive';
-        ctx.fillStyle = '#DC35F2';
-        ctx.fillText('start', 600, 340)
+        ctx.fillStyle = '#BF0436';
+        // console.log(this.position)
+        ctx.fillText(this.string, this.position.x, this.position.y, Platform.WIDTH)
+
+        // this will be used when highlighting input
+        // ctx.fillStyle = 'blue'
+        // ctx.fillText(this.string.slice(0, 3), this.position.x, this.position.y, Platform.WIDTH)
+
+
+        // ctx.font = '32px Cursive';
+        // ctx.fillStyle = '#DC35F2';
+        // ctx.fillText('start', 600, 340)//this pos would be same as plat
+        // fillText(text, x, y, maxWidth)//this maxWidth would be platwidth
     }
 
-    // draw the words
-// remainingWords.forEach((word, index) => {
-//   const platform = platforms[index];
-//   const x = platform[0] + (platform[2] / 2) - (ctx.measureText(word).width / 2);
-//   const y = platform[1] + platform[3] + 20;
-//   ctx.fillText(word, x, y);
-// });
+    // in the for loop that iterates over the words you want on the screen and draws them... if index === 0, send it do a different draw function(?) that'll highlight with red. other words that you don't want them to type will be written in green or something
+    // then when you're checking key inputs to see if the user has pressed the correct letters, add each letter to a lettersPressed array,
+
+
 
 }
-
-
-//should I append currentWord to currentPlatform?
-// - the issue is that my platform is nothing more than a drawn object. it doesn't exist in the HTML... so append doesn't work, since it needs an element to append to. I'll have to just render it under a platform and then delete it
 
 
 // eventListener for key input. this most definitely goes in Gameplay or even index?

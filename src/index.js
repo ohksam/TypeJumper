@@ -17,31 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = 650;  // time comes
 
     const gameplay = new Gameplay(ctx).animate();
-
-    // ctx.fillStyle = "#81D5FF";
-    // ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-
-
-    // FOR TESTING PURPOSES ONLY
-    // const player = new Player
-    // player.draw(ctx)
-    // const platforms = [new Platform({x:200, y:550}), new Platform({x:550, y: 280})]
-    
-    // platforms.forEach(platform => {
-    //     platform.draw(ctx);
-    // })
-
-    // const word = new Word()
-    // word.draw(ctx)
-    // let currentWord = 'start'
-
-    // console.log(word.wordBank);
-
-
-    // all that ^ should eventually get included in the following:
-    // const game = new Gameplay(ctx); 
-    // debugger
     
 })
 
