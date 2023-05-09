@@ -7,7 +7,7 @@ import Word from "./word"
 // SRS for words that are not perfectly typed, send them back into your wordbank
 
 class Game {
-    static TEMPWORDBANK = ['start', 'nextword'];
+    static TEMPWORDBANK = ['start', 'nextword', 'thisShouldBreakTheGame'];
     static NUMPLATFORMS = 2
     static DEFAULTPOS = {x: 69, y: 69}
 
@@ -89,24 +89,11 @@ class Game {
     //     }
     // }
 
-    removeLowestPlatform() {
-        this.platforms.shift();
-    }
-
-    drawCurrentWord() {
-        //logic to locate the next platform and then draw word a set distance under it. unless I decide to do that above
-    }
-    
-    
+    removeLowestPlatform() { //this could be in Platform - and you 
+        this.platforms.shift(); // and you just call it in game instead
+    }    
 }
 
-// animate() {
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-//   drawPlatforms();
-//   drawCurrentWord();
-//     addNewPlatform();
-// }
 
 
 

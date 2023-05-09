@@ -31,7 +31,7 @@ class Gameplay {
             // let currentWord = this.game.currentWord(); //THIS IS THE ISSUE RN
             // let nextLetter = currentWord[0];
 
-            // console.log(e.key)
+            console.log(e.key)
 
             if (keyPressed === this.currentWord[0]) {
                 console.log('success')
@@ -39,8 +39,11 @@ class Gameplay {
                 // nextLetter = currentWord[0];
                 //some logic to change the index value in your letter painting
                 rightChar = true;
+                //THIS CODE NEEDS TO GO IN A DIFF FUNCTION, but for now...
+                if (this.currentWord.length === 0) {this.game.player.position = {x: 400, y: 400}} 
+                // ^ that code isn't working. will i need to make a new Player instance when I want to teleport? we'll figure this out in a bit
                 } else {
-                    console.log('sadge')
+                    console.log('Sadge')
             }
         })
     }
