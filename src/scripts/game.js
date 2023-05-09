@@ -15,7 +15,8 @@ class Game {
         this.ctx = ctx;
         // this.platforms = [new Platform({x:280, y:550}), new Platform({x:550, y:280})];
         this.words = []; //got rid of null and start word for testing
-        this.platforms = this.generatePlatforms(); //we'll see. this might not be exactly how you want to write this.
+        this.platforms = this.generatePlatforms(); // could do the first hard-coded start platform then .concat(this.generatePlatforms())
+        // this.platforms = [new Platform(new Word('start', {x: 400, y:600 }))].concat(this.generatePlatforms());
         console.log(this.platforms)
         this.player = [new Player];
     }
@@ -25,7 +26,7 @@ class Game {
     }
 
     generatePlatforms() { //i'm gonna need a helper function here to return
-        const xPositions = [{x: 200, y: 220}, {x: 600, y: 220}];
+        const xPositions = [{x: 150, y: 300}, {x: 600, y: 300}];
         let myPlatforms = [];
         console.log(Game.TEMPWORDBANK)
 
@@ -36,6 +37,8 @@ class Game {
             })
         }
         // return myPlatforms;
+
+        //right now this function is making an array with Platform instances with a dummy position, THEN it's going over that array and changing the position again. just generate with a position set.
 
         // debugger
         for (let i = 0; i < Game.NUMPLATFORMS; i++) {
