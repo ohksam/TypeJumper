@@ -2,8 +2,12 @@ import Player from "./player"
 import Platform from "./platform"
 import Word from "./word"
 
+
+// after you chop off the first word element from your platforms array, .push that into a "completedWords" array so that you can keep track of how many words were typed (also this'll help you make sure that your code is working properly)
+// SRS for words that are not perfectly typed, send them back into your wordbank
+
 class Game {
-    static TEMPWORDBANK = ['testing', 'start'];
+    static TEMPWORDBANK = ['start', 'nextword'];
     static NUMPLATFORMS = 2
     static DEFAULTPOS = {x: 69, y: 69}
 
@@ -12,11 +16,12 @@ class Game {
         // this.platforms = [new Platform({x:280, y:550}), new Platform({x:550, y:280})];
         this.words = []; //got rid of null and start word for testing
         this.platforms = this.generatePlatforms(); //we'll see. this might not be exactly how you want to write this.
+        console.log(this.platforms)
         this.player = [new Player];
     }
 
     currentWord() {
-        return this.platforms[0].word;
+        return this.platforms[0].word.string;
     }
 
     generatePlatforms() { //i'm gonna need a helper function here to return
@@ -45,7 +50,7 @@ class Game {
         }
         // debugger
 
-        console.log(myPlatforms);
+        // console.log(myPlatforms);
         return myPlatforms;
     }
 

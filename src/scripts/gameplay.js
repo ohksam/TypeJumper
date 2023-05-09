@@ -9,6 +9,7 @@ class Gameplay {
         this.ctx = ctx;
         this.game = new Game(ctx);
         
+        this.currentWord = this.game.currentWord(); // or this.game.platforms[0].word.string?
         this.bindKeyHandlers()
     }
 
@@ -24,15 +25,20 @@ class Gameplay {
     }
 
     bindKeyHandlers() {
+        let rightChar = false;
         document.addEventListener('keydown', (e) => {
             const keyPressed = e.key;
+            // let currentWord = this.game.currentWord(); //THIS IS THE ISSUE RN
+            // let nextLetter = currentWord[0];
 
-            console.log(e.key)
+            // console.log(e.key)
 
-            if (keyPressed === this.game.currentWord[0]) {
+            if (keyPressed === this.currentWord[0]) {
                 console.log('success')
-                currentWord = currentWord.slice(1);
+                this.currentWord = this.currentWord.slice(1);
+                // nextLetter = currentWord[0];
                 //some logic to change the index value in your letter painting
+                rightChar = true;
                 } else {
                     console.log('sadge')
             }
