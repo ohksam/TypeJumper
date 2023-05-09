@@ -76,6 +76,7 @@ class Game {
     // allObjects.forEach(object => object.position.y += 5)
 
     // Question for Kyle: when I clearRect and re-draw during the animation loop, won't the platforms/words get re-drawn at their initialized position instead of updated position?
+    // ^regarding question above, this is irrelevant if we don't have a constant scroll. so let's table it for now.
     // - if I don't want my platforms to reset, I should shift them out of my platforms array after I draw them and instead of calling .draw from within a forEach loop, I should just call .draw on the platforms.shift().
 
 
