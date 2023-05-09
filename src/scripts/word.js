@@ -34,7 +34,7 @@ class Word {
         ctx.font = '32px Cursive';
         ctx.fillStyle = '#BF0436';
         // console.log(this.position)
-        ctx.fillText(this.string, this.position.x, this.position.y, Platform.WIDTH)
+        ctx.fillText(this.string, this.position.x + Platform.WIDTH/3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
 
         // this will be used when highlighting input
         // ctx.fillStyle = 'blue'

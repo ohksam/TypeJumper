@@ -8,7 +8,8 @@ class Gameplay {
     constructor(ctx) {
         this.ctx = ctx;
         this.game = new Game(ctx);
-        // this.player = this.player.addPlayer();
+        
+        this.bindKeyHandlers()
     }
 
     // static scrollSpeed = 0.5
@@ -22,6 +23,29 @@ class Gameplay {
         requestAnimationFrame(this.animate.bind(this));
     }
 
+    bindKeyHandlers() {
+        document.addEventListener('keydown', (e) => {
+            const keyPressed = e.key;
+
+            console.log(e.key)
+
+            if (keyPressed === this.game.currentWord[0]) {
+                console.log('success')
+                currentWord = currentWord.slice(1);
+                //some logic to change the index value in your letter painting
+                } else {
+                    console.log('sadge')
+            }
+        })
+    }
+// if (currentWord.length === 0) {
+//     player.position = {
+//         x: (platforms[1].position.x + platform.width) / 2,
+//         y: platforms[1].position.y + platform.height
+//     } 
+//         // change this to make sure player is on top of, not inside, platform
+//     currentWord = remainingWords.shift();
+// }
 
 
 }

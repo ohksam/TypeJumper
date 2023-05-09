@@ -3,7 +3,7 @@ import Platform from "./platform"
 import Word from "./word"
 
 class Game {
-    static TEMPWORDBANK = ['testing'];
+    static TEMPWORDBANK = ['testing', 'start'];
     static NUMPLATFORMS = 2
     static DEFAULTPOS = {x: 69, y: 69}
 
@@ -15,7 +15,12 @@ class Game {
         this.player = [new Player];
     }
 
-    generatePlatforms() {
+    currentWord() {
+        return this.platforms[0].word;
+    }
+
+    generatePlatforms() { //i'm gonna need a helper function here to return
+        const xPositions = [{x: 200, y: 220}, {x: 600, y: 220}];
         let myPlatforms = [];
         console.log(Game.TEMPWORDBANK)
 
@@ -25,19 +30,20 @@ class Game {
                 myPlatforms.push(new Platform(word, Game.DEFAULTPOS)) // *******
             })
         }
+        // return myPlatforms;
 
-        debugger
+        // debugger
         for (let i = 0; i < Game.NUMPLATFORMS; i++) {
+            let randomSpot = xPositions[Math.floor(Math.random() * 2)];
             if (i === 0) { 
                 myPlatforms[i].position = {x: 150, y: 600}
                 myPlatforms[i].word.position = {x: 150, y:600}
             } else {
-              myPlatforms[i].position = {x: 300, y: 200} 
-              myPlatforms[i].word.position = {x: 300, y:200}
-
+              myPlatforms[i].position = randomSpot;
+              myPlatforms[i].word.position = randomSpot;
             }
         }
-        debugger
+        // debugger
 
         console.log(myPlatforms);
         return myPlatforms;
@@ -97,26 +103,5 @@ class Game {
 // }
 
 
-
-// document.addEventListener('keydown', (e) => {
-//     const keyPressed = e.key;
-
-//     console.log(e.key)
-
-//     if (keyPressed === currentWord[0]) {
-//         console.log('success')
-//         currentWord = currentWord.slice(1);
-//         //some logic to make a color change for correctness
-//     } // else {some more logic here to glow red if incorrect input}
-// })
-
-// if (currentWord.length === 0) {
-//     player.position = {
-//         x: (platforms[1].position.x + platform.width) / 2,
-//         y: platforms[1].position.y + platform.height
-//     } 
-//         // change this to make sure player is on top of, not inside, platform
-//     currentWord = remainingWords.shift();
-// }
 
 export default Game

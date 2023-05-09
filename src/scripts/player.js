@@ -1,8 +1,8 @@
 class Player {
     constructor() {
         this.position = {
-            x: 360,
-            y: 500
+            x: 260,
+            y: 550
         }
         this.width = 50
         this.height = 50

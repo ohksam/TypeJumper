@@ -8,7 +8,6 @@
 import Game from "./scripts/game";
 import Gameplay from "./scripts/gameplay";
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
@@ -17,6 +16,4 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = 650;  // time comes
 
     const gameplay = new Gameplay(ctx).animate();
-    
 })
-
