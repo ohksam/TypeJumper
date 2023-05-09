@@ -5,57 +5,95 @@ import Word from "./word"
 
 // after you chop off the first word element from your platforms array, .push that into a "completedWords" array so that you can keep track of how many words were typed (also this'll help you make sure that your code is working properly)
 // SRS for words that are not perfectly typed, send them back into your wordbank
+// or just make a counter instead of moving the whole word into your array of completedWords. just have completedWords = 0 then ++ when they finish a word.
 
 class Game {
-    static TEMPWORDBANK = ['start', 'nextword', 'thisShouldBreakTheGame'];
-    static NUMPLATFORMS = 2
-    static DEFAULTPOS = {x: 69, y: 69}
+    static TEMPWORDBANK = ['nextword', 'thisShouldBreakTheGame']; // this will eventually get replaced by real wordbank (lol)
+    static DEFAULT_POS = {x: 69, y: 69} // this is probably useless now
+    static START_PLATFORM = new Platform('start', {x: 150, y: 600})
+    static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
 
     constructor(ctx) {
         this.ctx = ctx;
         // this.platforms = [new Platform({x:280, y:550}), new Platform({x:550, y:280})];
         this.words = []; //got rid of null and start word for testing
-        this.platforms = this.generatePlatforms(); // could do the first hard-coded start platform then .concat(this.generatePlatforms())
+        // this.platforms = this.generatePlatforms(); // could do the first hard-coded start platform then .concat(this.generatePlatforms())
         // this.platforms = [new Platform(new Word('start', {x: 400, y:600 }))].concat(this.generatePlatforms());
-        console.log(this.platforms)
+        this.myQueue = [Game.START_PLATFORM];
+        this.platforms = this.platformsOnScreen();
+        // console.log(this.platforms)
         this.player = [new Player];
     }
+
+    platformsQueue() {
+        // let myQueue = [Game.START_PLATFORM];
+        // debugger
+        this.myQueue.push(this.generateNewPlatform());
+        // console.log(myQueue)
+        return this.myQueue;
+    }
+
+    platformsOnScreen() {
+        let maxPlats = 2;
+        let screenPlats = [];
+        while (screenPlats.length < maxPlats) {
+            screenPlats.push(this.platformsQueue().shift()) // might not work register on the other function though...
+        }
+        // console.log(screenPlats)
+        return screenPlats; 
+    }
+
+    generateNewPlatform() {
+        let wordString = Game.TEMPWORDBANK.shift(); // this took wordbank word
+
+        // let wordObject = new Word(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]); // this took that string and made it a word object and gave it a random position
+
+        let nextPlatform = new Platform(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]);
+        return nextPlatform;
+    }
+
+
+
+
+
+
+
 
     currentWord() {
         return this.platforms[0].word.string;
     }
 
-    generatePlatforms() { //i'm gonna need a helper function here to return
-        const xPositions = [{x: 150, y: 300}, {x: 600, y: 300}];
-        let myPlatforms = [];
-        console.log(Game.TEMPWORDBANK)
+    // generatePlatforms() { //i'm gonna need a helper function here to return
+    //     const xPositions = [{x: 150, y: 300}, {x: 600, y: 300}];
+    //     let myPlatforms = [];
+    //     console.log(Game.TEMPWORDBANK)
 
-        // this logic below isn't working at all. maybe try separating it.
-        while (myPlatforms.length < 2) {
-            Game.TEMPWORDBANK.forEach(word => {
-                myPlatforms.push(new Platform(word, Game.DEFAULTPOS)) // *******
-            })
-        }
-        // return myPlatforms;
+    //     // this logic below isn't working at all. maybe try separating it.
+    //     while (myPlatforms.length < 2) {  //THIS IS FIRING OFF EVERY PLATFORM BECAUSE THE ONLY CONDITION FOR THE ITERATION IS < 2. AFTER THAT IT'S JUST ITERATING THROUGH THE ENTIRE PLATFORM, REGARDLESS OF MYPLAT LENGTH
+    //         Game.TEMPWORDBANK.forEach(word => {
+    //             myPlatforms.push(new Platform(word, Game.DEFAULT_POS)) // *******
+    //         })
+    //     }
+    //     // return myPlatforms;
 
-        //right now this function is making an array with Platform instances with a dummy position, THEN it's going over that array and changing the position again. just generate with a position set.
+    //     //right now this function is making an array with Platform instances with a dummy position, THEN it's going over that array and changing the position again. just generate with a position set.
 
-        // debugger
-        for (let i = 0; i < Game.NUMPLATFORMS; i++) {
-            let randomSpot = xPositions[Math.floor(Math.random() * 2)];
-            if (i === 0) { 
-                myPlatforms[i].position = {x: 150, y: 600}
-                myPlatforms[i].word.position = {x: 150, y:600}
-            } else {
-              myPlatforms[i].position = randomSpot;
-              myPlatforms[i].word.position = randomSpot;
-            }
-        }
-        // debugger
+    //     // debugger
+    //     for (let i = 0; i < Game.NUM_PLATFORMS; i++) {
+    //         let randomSpot = xPositions[Math.floor(Math.random() * 2)];
+    //         if (i === 0) { 
+    //             myPlatforms[i].position = {x: 150, y: 600}
+    //             myPlatforms[i].word.position = {x: 150, y:600}
+    //         } else {
+    //           myPlatforms[i].position = randomSpot;
+    //           myPlatforms[i].word.position = randomSpot;
+    //         }
+    //     }
+    //     // debugger
 
-        // console.log(myPlatforms);
-        return myPlatforms;
-    }
+    //     // console.log(myPlatforms);
+    //     return myPlatforms;
+    // }
 
     // currentWord = this.words.slice(1)
 
@@ -68,6 +106,8 @@ class Game {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#81D5FF";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // debugger
 
         this.allObjects().forEach((object) => {
             object.draw(ctx);

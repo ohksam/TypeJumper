@@ -15,6 +15,8 @@ class Gameplay {
 
     // static scrollSpeed = 0.5
 
+    //hypothetically make a start() method which will call animate, bindKey, and wordChecker, which will keep checking currentWord's length and send in a new word/platform/etc once you've typed the word out.
+
     animate() {   // 
         // this.drawBackground(ctx); // this should draw the canvas
         // this.moveObjects();       // this should update all objects position by the scrollSpeed

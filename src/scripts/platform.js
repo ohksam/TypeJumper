@@ -6,6 +6,7 @@ class Platform {
     static HEIGHT = 20;
     static WIDTH = 250;
     static COUNT = 3; //this should probably be in Game.
+    // static START_WORD = new Word('start', {x: 150, y: 600})
 
     constructor(word, position) {
         this.word = new Word(word, position);
