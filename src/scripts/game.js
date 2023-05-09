@@ -15,13 +15,9 @@ class Game {
 
     constructor(ctx) {
         this.ctx = ctx;
-        // this.platforms = [new Platform({x:280, y:550}), new Platform({x:550, y:280})];
-        this.words = []; //got rid of null and start word for testing
-        // this.platforms = this.generatePlatforms(); // could do the first hard-coded start platform then .concat(this.generatePlatforms())
-        // this.platforms = [new Platform(new Word('start', {x: 400, y:600 }))].concat(this.generatePlatforms());
+        // this.words = []; //this is probably unnecessary
         this.myQueue = [Game.START_PLATFORM];
         this.platforms = this.platformsOnScreen();
-        // console.log(this.platforms)
         this.player = [new Player];
     }
 
@@ -98,7 +94,7 @@ class Game {
     // currentWord = this.words.slice(1)
 
     allObjects() {
-        return this.platforms.concat(this.words, this.player);
+        return this.platforms.concat(this.player);
     }
 
     draw(ctx) {

@@ -30,6 +30,25 @@ class Word {
     // currentWord = remainingWords.shift();
     // when Word.draw gets called, it'll might be something like 'new Word(currentWord)'
 
+//
+//on a bad key press, reset the index back to 0
+//reset index is a WORD function, which has to get called by a "handleBADkeypress"
+//
+
+    //instead of filling text with full string, draw each letter one at a time.
+    // for each letter's position, 
+
+    //every word instance will start with this.index = 0
+    //give word class some type of function like "handleCorrectKeyPress()"
+    // - gonna take this.index ++
+
+    // THEN TELL PLATFORM IN ITS LOGIC TO ALSO handleCorrectKeyPress()
+    // - on a good key press, tell this.word.handleCorrectKeyPress()
+
+    // utilize a for (i)loop and do 
+    // ctx.fillText (this.letters[i], this.position.x + 
+    //*platform width/3 +)
+    // if i is less than this.index
     draw(ctx) {
         // debugger
         ctx.font = '32px Cursive';

@@ -35,6 +35,8 @@ class Gameplay {
 
             console.log(e.key)
 
+            // just use an index reference here instead of mutating the string value in your words
+
             if (keyPressed === this.currentWord[0]) {
                 console.log('success')
                 this.currentWord = this.currentWord.slice(1);
@@ -45,7 +47,7 @@ class Gameplay {
                 if (this.currentWord.length === 0) {this.game.player.position = {x: 400, y: 400}} 
                 // ^ that code isn't working. will i need to make a new Player instance when I want to teleport? we'll figure this out in a bit
                 } else {
-                    console.log('Sadge')
+                    console.log('miss')
             }
         })
     }
