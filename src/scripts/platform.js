@@ -17,6 +17,18 @@ class Platform {
         // this.height = 20
     }
 
+    //setter
+    // set position(newPosition) {
+    //     this._position = {
+    //         x: newPosition.x,
+    //         y: newPosition.y
+    //     };
+    //     this.word.position = {
+    //         x: newPosition.x,
+    //         y: newPosition.y
+    //     }
+    // }
+
     // platforms = []; // confused here because when gameplay draws these, it'll have 2 hard-coded platforms to start with
 
     draw(ctx) { // do i want to pass platform.draw a position as parameter?

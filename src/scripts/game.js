@@ -3,7 +3,7 @@ import Platform from "./platform"
 import Word from "./word"
 
 class Game {
-    static TEMPWORDBANK = ['testing', 'with', 'a', 'few', 'more', 'words', 'now'];
+    static TEMPWORDBANK = ['testing'];
     static NUMPLATFORMS = 2
     static DEFAULTPOS = {x: 69, y: 69}
 
@@ -19,19 +19,27 @@ class Game {
         let myPlatforms = [];
         console.log(Game.TEMPWORDBANK)
 
-        while (myPlatforms.length < Game.NUMPLATFORMS) {
+        // this logic below isn't working at all. maybe try separating it.
+        while (myPlatforms.length < 2) {
             Game.TEMPWORDBANK.forEach(word => {
                 myPlatforms.push(new Platform(word, Game.DEFAULTPOS)) // *******
             })
         }
 
+        debugger
         for (let i = 0; i < Game.NUMPLATFORMS; i++) {
-            if (i === 0) { myPlatforms[i].position = {x: 150, y: 600}
+            if (i === 0) { 
+                myPlatforms[i].position = {x: 150, y: 600}
+                myPlatforms[i].word.position = {x: 150, y:600}
             } else {
-              myPlatforms[i].position = {x: 300, y: 200}  
+              myPlatforms[i].position = {x: 300, y: 200} 
+              myPlatforms[i].word.position = {x: 300, y:200}
+
             }
         }
+        debugger
 
+        console.log(myPlatforms);
         return myPlatforms;
     }
 
