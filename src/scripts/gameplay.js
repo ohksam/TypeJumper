@@ -8,7 +8,8 @@ class Gameplay {
         this.ctx = ctx;
         this.game = new Game(ctx);
         
-        this.currentWord = this.game.platforms[0].word.string; // or this.game.platforms[0].word.string?
+        this.currentWord = this.game.currentPlatform.word.string; // or this.game.platforms[0].word.string?
+        this.targetWord = this.currentWord;
         this.bindKeyHandlers()
     }
 
@@ -52,15 +53,15 @@ class Gameplay {
 
             // let i = 0; // i is going to get reset after every key press so I can't save an i here..
             
-            let currentWord = this.game.currentPlatform.word.string;
-            let targetWord = currentWord;
-            if (keyPressed === targetWord[0]) {
+            // let currentWord = this.game.currentPlatform.word.string;
+            // let targetWord = currentWord;
+            if (keyPressed === this.targetWord[0]) {
                 console.log('success'); // for testing
-                targetWord = targetWord.slice(1);
+                this.targetWord = this.targetWord.slice(1);
                 this.game.handleCorrectKey();
             } else {
                 console.log('miss'); //also for testing
-                targetWord = currentWord;
+                this.targetWord = this.currentWord;
                 this.game.handleBadKey();
             }
 

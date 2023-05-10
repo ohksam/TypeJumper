@@ -82,7 +82,10 @@ class Game {
     }
 
     goNext() {
+        console.log('GG GO NEXT SHIT TEAM')
         this.platforms.shift();
+        this.player.position = (this.currentPlatform.position);
+        // debugger
     }
 
 
