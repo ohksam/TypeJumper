@@ -9,7 +9,7 @@ import Word from "./word"
 
 class Game {
     // static TEMPWORDBANK = ['welcome', 'to', 'typer', 'jump']; // this will eventually get replaced by real wordbank (lol)
-    static START_PLATFORM = new Platform('start', {x: 150, y: 600})
+    // static START_PLATFORM = new Platform('start', {x: 150, y: 600})
     static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
 
     constructor(ctx) {

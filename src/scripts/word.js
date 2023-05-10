@@ -9,6 +9,7 @@ class Word {
             y: y
         }
         this.index = 0;
+        // this.letters = string.split('');
     }
 
     // wordBank = ['peck', 'push', 'coin', 'grim', 'soup', 'clap', 'nail', 'nuts', 'fine', 'walk', 'skelp', 'clock', 'sizes', 'elder', 'thief', 'thine', 'pious', 'dizzy', 'dazed', 'cloud', 'vital', 'these', 'excel', 'dodge', 'cease', 'being', 'pasty', 'abyss', 'hinder', 'alone', 'rewire', 'dragon', 'screwy', 'willed', 'basted', 'seeker', 'wagers', 'rabies', 'knight', 'larynx', 'winery', 'foiled', 'tartar', 'inmate', 'hornet', 'higher', 'deluge', 'zenith', 'hollow', 'mantis', 'tinted', 'infuse', 'planner', 'trussed', 'protium', 'pursuit', 'cogency', 'affable', 'thunder', 'clapped', 'subsale', 'cayenne', 'sifting', 'reorder', 'commend', 'minimum', 'bascule', 'inflict', 'overplan', 'function', 'fathered', 'flimflam', 'veracity', 'tutorial', 'frumpily', 'injuring', 'airliner', 'mistress', 'humoring', 'dressage', 'gemstone', 'gigaflop', 'scorning', 'rocklike', 'defender', 'vocalizes', 'whittling', 'nightmare', 'colosseum', 'confessed', 'debutante', 'insidious', 'micropore', 'omelettes', 'recumbent', 'moderates', 'weaponize', 'gyroscopic', 'dishearten', 'authorized', 'unfaithful', 'unbottling', 'crystalline']
@@ -38,9 +39,14 @@ class Word {
     //*platform width/3 +)
     // if i is less than this.index
 
-    // draw(ctx) {
-    //     for (let i = 0; i <)
-    // }
+    drawGreen(ctx) {
+        for (let i = 0; i < this.index; i++) {
+            
+            ctx.font = '32px Cursive';
+            ctx.fillStyle = '#00BD00'
+            ctx.fillText(this.string.slice(0,this.index), this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+        }
+    }
 
     draw(ctx) {
         // debugger
@@ -48,6 +54,8 @@ class Word {
         ctx.fillStyle = '#BF0436';
         // console.log(this.position)
         ctx.fillText(this.string, this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+
+        this.drawGreen(ctx);
 
         // this will be used when highlighting input
         // ctx.fillStyle = 'blue'
@@ -73,8 +81,12 @@ class Word {
     }
 
     handleBadKey() {
-        this.index = 0;
+        this.resetIndex(); //or we could just put index = 0 here..
         // console.log("word.Bad")
+    }
+
+    resetIndex() {
+        this.index = 0;
     }
 
     // in the for loop that iterates over the words you want on the screen and draws them... if index === 0, send it do a different draw function(?) that'll highlight with red. other words that you don't want them to type will be written in green or something
