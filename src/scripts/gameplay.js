@@ -70,7 +70,7 @@ class Gameplay {
             // let currentWord = this.game.currentPlatform.word.string;
             // let targetWord = currentWord;
             if (keyPressed === this.targetWord[0]) {
-                console.log('success'); // for testing
+                // console.log('success'); // for testing
                 this.targetWord = this.targetWord.slice(1);
                 this.game.handleCorrectKey();
                 if (this.targetWord.length === 0) {
@@ -78,7 +78,7 @@ class Gameplay {
                     this.targetWord = this.currentWord;
                 }
             } else {
-                console.log('miss'); //also for testing
+                // console.log('miss'); //also for testing
                 this.targetWord = this.currentWord;
                 this.game.handleBadKey();
             }

@@ -32,8 +32,8 @@ class Game {
         return [
         new Platform('welcome', {x: 150, y: 600}),
         new Platform('to', {x: 600, y: 350}),
-        new Platform('typer', {x: 150, y: 100}),
-        new Platform('jump', {x: 600, y: -150}),
+        new Platform('type', {x: 150, y: 100}),
+        new Platform('jumper', {x: 600, y: -150}),
         new Platform('here', {x: 150, y: -400}),
         new Platform('are', {x: 600, y: -650}),
         new Platform('some', {x: 150, y: -900}),
