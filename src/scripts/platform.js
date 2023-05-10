@@ -25,10 +25,12 @@ class Platform {
 
     handleCorrectKey() {
         this.word.handleCorrectKey();
+        console.log("platform.Correct")
     }
 
     handleBadKey() {
         this.word.handleBadKey();
+        console.log("platform.Bad")
     }
 
 }

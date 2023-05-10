@@ -62,12 +62,12 @@ class Word {
 
     handleCorrectKey() {
         this.index += 1;
-
+        console.log("word.Correct")
     }
 
     handleBadKey() {
         this.index = 0;
-
+        console.log("word.Bad")
     }
 
     // in the for loop that iterates over the words you want on the screen and draws them... if index === 0, send it do a different draw function(?) that'll highlight with red. other words that you don't want them to type will be written in green or something

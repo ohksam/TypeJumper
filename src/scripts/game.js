@@ -8,7 +8,7 @@ import Word from "./word"
 // or just make a counter instead of moving the whole word into your array of completedWords. just have completedWords = 0 then ++ when they finish a word.
 
 class Game {
-    static TEMPWORDBANK = ['nextword', 'thisShouldBreakTheGame']; // this will eventually get replaced by real wordbank (lol)
+    static TEMPWORDBANK = ['welcome', 'to', 'typer', 'jump']; // this will eventually get replaced by real wordbank (lol)
     static DEFAULT_POS = {x: 69, y: 69} // this is probably useless now
     static START_PLATFORM = new Platform('start', {x: 150, y: 600})
     static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
@@ -34,7 +34,7 @@ class Game {
 
     platformsOnScreen() {
         let maxPlats = 2;
-        let screenPlats = [];
+        let screenPlats = []; //this is resetting to 0 words
         while (screenPlats.length < maxPlats) {
             screenPlats.push(this.platformsQueue().shift()) // might not work register on the other function though...
         }
@@ -82,19 +82,19 @@ class Game {
     }
 
     goNext() {
-        console.log('GG GO NEXT')
+        console.log('GO NEXT')
         this.platforms.shift();
 
         // code above this line works fine
         // code below this line is the messiest shit I've ever written
         
-        console.log(this.player)
-        this.player.position = (this.currentPlatform.position); // this isn't working
-        console.log(this.player)
+        // console.log(this.player)
+        // this.player.position = (this.currentPlatform.position); // this isn't working
+        // console.log(this.player)
         // this.player.draw(this.ctx);
         // debugger
-        this.platforms = this.platforms;
-        // this.platforms = this.platformsOnScreen();
+        // this.platforms = this.platforms;
+        this.platforms = this.platformsOnScreen();
         this.currentPlatform = this.platforms[0];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
