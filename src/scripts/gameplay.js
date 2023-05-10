@@ -19,7 +19,19 @@ class Gameplay {
         // this.drawBackground(ctx); // this should draw the canvas
         // this.moveObjects();       // this should update all objects position by the scrollSpeed
         // debugger
-        this.game.draw(this.ctx);    // and this should re-draw all objects after having been scrolled
+
+        this.game.update(this.ctx); //this will call update in game which will then call draw for game
+
+        // ok. right now game.draw calls draw in all classes
+        // so what would game.update do? game update needs to change the position of all objects, but taht would be taken care of by their respective classes. 
+        // so game.update should just call all objects to update
+        // each object's update can then call its own draw
+        // game.draw can just draw the canvas
+
+
+
+
+        // this.game.draw(this.ctx);    // and this should re-draw all objects after having been scrolled
         // debugger
         requestAnimationFrame(this.animate.bind(this));
     }
@@ -31,9 +43,9 @@ class Gameplay {
             // let currentWord = this.game.currentWord(); //THIS IS THE ISSUE RN
             // let nextLetter = currentWord[0];
 
-            console.log(e.key)
+            // console.log(e.key)
             console.log(this.currentWord)
-            console.log(this.targetWord)
+            // console.log(this.targetWord)
 
             // just use an index reference here instead of mutating the string value in your words
 

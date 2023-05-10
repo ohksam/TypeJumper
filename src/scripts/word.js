@@ -1,12 +1,12 @@
 import Platform from "./platform";
 
 class Word {
-    constructor(string, position) {
+    constructor(string, {x, y}) {
 
         this.string = string;
         this.position = {
-            x: position.x,
-            y: position.y
+            x: x,
+            y: y
         }
         this.index = 0;
     }
@@ -60,14 +60,21 @@ class Word {
         // fillText(text, x, y, maxWidth)//this maxWidth would be platwidth
     }
 
+    update() {   //next snapshot
+        // this.draw()
+        // this is where you'll need the functionality of scrolling through the letters and drawing each individually, methinks.
+        //maybe something like this.drawRed() and this.drawGreen()?
+        //**remember this is the logic where kyle talked about using a constant that would increment by a couple pixels for each letter individually
+    }
+
     handleCorrectKey() {
         this.index += 1;
-        console.log("word.Correct")
+        // console.log("word.Correct")
     }
 
     handleBadKey() {
         this.index = 0;
-        console.log("word.Bad")
+        // console.log("word.Bad")
     }
 
     // in the for loop that iterates over the words you want on the screen and draws them... if index === 0, send it do a different draw function(?) that'll highlight with red. other words that you don't want them to type will be written in green or something

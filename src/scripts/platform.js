@@ -7,11 +7,15 @@ class Platform {
     static WIDTH = 250;
     static COUNT = 3; //this should probably be in Game.
 
-    constructor(wordString, position) {
-        this.word = new Word(wordString, position);
+    constructor(wordString, {x, y}) {
+        this.word = new Word(wordString, {x, y});
         this.position = {
-            x: position.x,
-            y: position.y
+            x: x,
+            y: y
+        }
+        this.velocity = {
+            x: 0,
+            y: 0
         }
     }
 
@@ -23,14 +27,24 @@ class Platform {
         this.word.draw(ctx)
     };
 
+    update() {   //next snapshot
+        // this.draw()
+        this.position.y += this.velocity.y
+        this.position.x += this.velocity.x
+
+        if (this.position.y + this.height + this.velocity.y >= 600) {
+            this.velocity.y = 0
+        }
+    }
+
     handleCorrectKey() {
         this.word.handleCorrectKey();
-        console.log("platform.Correct")
+        // console.log("platform.Correct")
     }
 
     handleBadKey() {
         this.word.handleBadKey();
-        console.log("platform.Bad")
+        // console.log("platform.Bad")
     }
 
 }

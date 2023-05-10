@@ -8,48 +8,72 @@ import Word from "./word"
 // or just make a counter instead of moving the whole word into your array of completedWords. just have completedWords = 0 then ++ when they finish a word.
 
 class Game {
-    static TEMPWORDBANK = ['welcome', 'to', 'typer', 'jump']; // this will eventually get replaced by real wordbank (lol)
-    static DEFAULT_POS = {x: 69, y: 69} // this is probably useless now
+    // static TEMPWORDBANK = ['welcome', 'to', 'typer', 'jump']; // this will eventually get replaced by real wordbank (lol)
     static START_PLATFORM = new Platform('start', {x: 150, y: 600})
     static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
 
     constructor(ctx) {
         this.ctx = ctx;
         // this.words = []; //this is probably unnecessary
-        this.myQueue = [Game.START_PLATFORM];
-        this.platforms = this.platformsOnScreen();
+        // this.myQueue = [Game.START_PLATFORM];
+        this.index = 0;
+        this.platforms = this.currentLevelPlatforms();
         this.player = [new Player];
-        this.currentPlatform = this.platforms[0];
+        this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
     }
 
-    platformsQueue() {
-        // let myQueue = [Game.START_PLATFORM];
-        // debugger
-        this.myQueue.push(this.generateNewPlatform());
-        // console.log(myQueue)
-        return this.myQueue;
+    currentLevelPlatforms() {
+        //if (this.level === 1), obviously more dynamic later with i
+
+        return [
+        new Platform('welcome', {x: 10, y: 10}),
+        new Platform('to', {x: 10, y: 10}),
+        new Platform('typer', {x: 10, y: 10}),
+        new Platform('jump', {x: 10, y: 10}),
+        new Platform('here', {x: 10, y: 10}),
+        new Platform('are', {x: 10, y: 10}),
+        new Platform('some', {x: 10, y: 10}),
+        new Platform('warmup', {x: 10, y: 10}),
+        new Platform('words', {x: 10, y: 10})
+        ];
     }
 
-    platformsOnScreen() {
-        let maxPlats = 2;
-        let screenPlats = []; //this is resetting to 0 words
-        while (screenPlats.length < maxPlats) {
-            screenPlats.push(this.platformsQueue().shift()) // might not work register on the other function though...
-        }
-        // console.log(screenPlats)
-        return screenPlats; 
-    }
 
-    generateNewPlatform() {
-        let wordString = Game.TEMPWORDBANK.shift(); // this took wordbank word
 
-        // let wordObject = new Word(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]); // this took that string and made it a word object and gave it a random position
 
-        let nextPlatform = new Platform(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]);
-        return nextPlatform;
-    }
+
+
+
+
+
+    // platformsQueue() {
+    //     // let myQueue = [Game.START_PLATFORM];
+    //     // debugger
+    //     this.myQueue.push(this.generateNewPlatform());
+    //     // console.log(myQueue)
+    //     return this.myQueue;
+    // }
+
+    // platformsOnScreen() {
+    //     let maxPlats = 2;
+    //     let screenPlats = []; //this is resetting to 0 words
+    //     while (screenPlats.length < maxPlats) {
+    //         screenPlats.push(this.platformsQueue().shift()) // might not work register on the other function though...
+    //     }
+    //     // console.log(screenPlats)
+    //     return screenPlats; 
+    // }
+
+    // generateNewPlatform() {
+    //     let wordString = Game.TEMPWORDBANK.shift(); // this took wordbank word
+
+    //     // let wordObject = new Word(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]); // this took that string and made it a word object and gave it a random position
+
+    //     let nextPlatform = new Platform(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]);
+    //     return nextPlatform;
+    // }
 
     allObjects() {
         return this.platforms.concat(this.player);
@@ -66,6 +90,16 @@ class Game {
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });
+        //draw functionality will not be taken care of by each individual class
+
+    }
+    
+    update(ctx) {   //next snapshot
+        this.allObjects().forEach((object) => {
+            object.update.bind(ctx);
+        })
+
+        this.draw(ctx)
     }
 
     handleCorrectKey() {
@@ -83,7 +117,8 @@ class Game {
 
     goNext() {
         console.log('GO NEXT')
-        this.platforms.shift();
+        this.index += 1;
+        // this.platforms.shift();
 
         // code above this line works fine
         // code below this line is the messiest shit I've ever written
@@ -94,9 +129,16 @@ class Game {
         // this.player.draw(this.ctx);
         // debugger
         // this.platforms = this.platforms;
-        this.platforms = this.platformsOnScreen();
-        this.currentPlatform = this.platforms[0];
+        // this.platforms = this.platformsOnScreen();
+        this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
+        this.player.velocity = {
+            x: 100, 
+            y: 100
+        }
+        if (this.currentPlatform === undefined) {
+            console.log('you win!')
+        }
         this.target = this.currentPlatform.word.string.length;
     }
 
