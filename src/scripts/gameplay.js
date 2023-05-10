@@ -32,6 +32,8 @@ class Gameplay {
             // let nextLetter = currentWord[0];
 
             console.log(e.key)
+            console.log(this.currentWord)
+            console.log(this.targetWord)
 
             // just use an index reference here instead of mutating the string value in your words
 
@@ -59,6 +61,10 @@ class Gameplay {
                 console.log('success'); // for testing
                 this.targetWord = this.targetWord.slice(1);
                 this.game.handleCorrectKey();
+                if (this.targetWord.length === 0) {
+                    this.currentWord = this.game.currentPlatform.word.string;
+                    this.targetWord = this.currentWord;
+                }
             } else {
                 console.log('miss'); //also for testing
                 this.targetWord = this.currentWord;

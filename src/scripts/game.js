@@ -82,10 +82,22 @@ class Game {
     }
 
     goNext() {
-        console.log('GG GO NEXT SHIT TEAM')
+        console.log('GG GO NEXT')
         this.platforms.shift();
-        this.player.position = (this.currentPlatform.position);
+
+        // code above this line works fine
+        // code below this line is the messiest shit I've ever written
+        
+        console.log(this.player)
+        this.player.position = (this.currentPlatform.position); // this isn't working
+        console.log(this.player)
+        // this.player.draw(this.ctx);
         // debugger
+        this.platforms = this.platforms;
+        // this.platforms = this.platformsOnScreen();
+        this.currentPlatform = this.platforms[0];
+        this.counter = 0;
+        this.target = this.currentPlatform.word.string.length;
     }
 
 
