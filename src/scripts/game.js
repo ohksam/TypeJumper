@@ -104,10 +104,10 @@ class Game {
 
     handleCorrectKey() {
         this.counter += 1;
+        this.currentPlatform.handleCorrectKey();
         if (this.counter === this.target) {
             this.goNext();
         }
-        this.currentPlatform.handleCorrectKey();
     }
 
     handleBadKey() {

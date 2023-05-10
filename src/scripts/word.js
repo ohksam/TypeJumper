@@ -39,11 +39,24 @@ class Word {
     //*platform width/3 +)
     // if i is less than this.index
 
+    paintLastGreen(ctx) {
+        // debugger
+        if (this.index < this.string.length - 1) {
+            ctx.font = '32px Cursive';
+            ctx.fillStyle = '#rgba(255, 255, 255, 0.5)'; // - this is red
+            ctx.fillText(this.string.slice(0,this.index), this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+        } else if (this.index === this.string.length) {
+            ctx.font = '32.px Cursive';
+            ctx.fillStyle = '#00BD00';
+            ctx.fillText(this.string, this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+        }
+    }
+
     drawGreen(ctx) {
         for (let i = 0; i < this.index; i++) {
             
             ctx.font = '32px Cursive';
-            ctx.fillStyle = '#00BD00'
+            ctx.fillStyle = '#00BD00'; // - this is green
             ctx.fillText(this.string.slice(0,this.index), this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
         }
     }
@@ -56,6 +69,7 @@ class Word {
         ctx.fillText(this.string, this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
 
         this.drawGreen(ctx);
+        this.paintLastGreen(ctx);
 
         // this will be used when highlighting input
         // ctx.fillStyle = 'blue'
@@ -77,6 +91,9 @@ class Word {
 
     handleCorrectKey() {
         this.index += 1;
+        // if (this.index === this.string.length-1) {
+        //     this.paintLastGreen();
+        // }
         // console.log("word.Correct")
     }
 
