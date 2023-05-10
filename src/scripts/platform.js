@@ -6,31 +6,14 @@ class Platform {
     static HEIGHT = 20;
     static WIDTH = 250;
     static COUNT = 3; //this should probably be in Game.
-    // static START_WORD = new Word('start', {x: 150, y: 600})
 
-    constructor(word, position) {
-        this.word = new Word(word, position);
+    constructor(wordString, position) {
+        this.word = new Word(wordString, position);
         this.position = {
             x: position.x,
             y: position.y
         }
-        // this.width = 250
-        // this.height = 20
     }
-
-    //setter
-    // set position(newPosition) {
-    //     this._position = {
-    //         x: newPosition.x,
-    //         y: newPosition.y
-    //     };
-    //     this.word.position = {
-    //         x: newPosition.x,
-    //         y: newPosition.y
-    //     }
-    // }
-
-    // platforms = []; // confused here because when gameplay draws these, it'll have 2 hard-coded platforms to start with
 
     draw(ctx) { // do i want to pass platform.draw a position as parameter?
         // debugger
@@ -38,7 +21,15 @@ class Platform {
         ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
         // throw in word drawing logic here too
         this.word.draw(ctx)
-    } 
+    };
+
+    handleCorrectKey() {
+        this.word.handleCorrectKey();
+    }
+
+    handleBadKey() {
+        this.word.handleBadKey();
+    }
 
 }
 

@@ -1,7 +1,6 @@
 // think of what we need to inherit here
 import Game from "./game";
 
-
 // THIS SHOULD JUST DETECT KEYBINDS AND START THE ANIMATION LOOP
 
 class Gameplay {
@@ -9,11 +8,9 @@ class Gameplay {
         this.ctx = ctx;
         this.game = new Game(ctx);
         
-        this.currentWord = this.game.currentWord(); // or this.game.platforms[0].word.string?
+        this.currentWord = this.game.platforms[0].word.string; // or this.game.platforms[0].word.string?
         this.bindKeyHandlers()
     }
-
-    // static scrollSpeed = 0.5
 
     //hypothetically make a start() method which will call animate, bindKey, and wordChecker, which will keep checking currentWord's length and send in a new word/platform/etc once you've typed the word out.
 
@@ -37,20 +34,58 @@ class Gameplay {
 
             // just use an index reference here instead of mutating the string value in your words
 
-            if (keyPressed === this.currentWord[0]) {
-                console.log('success')
-                this.currentWord = this.currentWord.slice(1);
-                // nextLetter = currentWord[0];
-                //some logic to change the index value in your letter painting
-                rightChar = true;
-                //THIS CODE NEEDS TO GO IN A DIFF FUNCTION, but for now...
-                if (this.currentWord.length === 0) {this.game.player.position = {x: 400, y: 400}} 
-                // ^ that code isn't working. will i need to make a new Player instance when I want to teleport? we'll figure this out in a bit
-                } else {
-                    console.log('miss')
+            //why save a separate variable and mutate it when you can just dive in and READ what's already there?
+            // - could save the currentWord to another var and slice that if you wish, but you could also do Game.currentPlatform.word.string[i] or something like
+            // let i = 0;
+            // could also say let currentWord = Game.Platform[0].word.string[i] (LMAO) then do this:
+            // if keyPressed = this.currentWord[i] {
+                // handleCorrectKeyPress()
+                // else 
+                // handleBadKeyPress() and then rest i = 0
+            // }
+
+
+            // if good key press
+            //      Game.handleCorrectKeyPress
+            // else 
+            //      Game.handleBadKeyPress
+
+            // let i = 0; // i is going to get reset after every key press so I can't save an i here..
+            
+            let currentWord = this.game.currentPlatform.word.string;
+            let targetWord = currentWord;
+            if (keyPressed === targetWord[0]) {
+                console.log('success'); // for testing
+                targetWord = targetWord.slice(1);
+                this.game.handleCorrectKey();
+                if (targetWord.length === 0) {
+                    this.game.goNext();
+                }
+            } else {
+                console.log('miss'); //also for testing
+                targetWord = currentWord;
+                this.game.handleBadKey();
             }
+
+
+            //we're refactoring this right now.
+            // if (keyPressed === this.currentWord[0]) {
+            //     console.log('success')
+            //     this.currentWord = this.currentWord.slice(1);
+            //     // nextLetter = currentWord[0];
+            //     //some logic to change the index value in your letter painting
+            //     // rightChar = true;
+            //     //THIS CODE NEEDS TO GO IN A DIFF FUNCTION, but for now...
+            //     if (this.currentWord.length === 0) {this.game.player.position = {x: 400, y: 400}} 
+            //     // ^ that code isn't working. will i need to make a new Player instance when I want to teleport? we'll figure this out in a bit
+            //     } else {
+            //         console.log('miss')
+            // }
         })
     }
+
+
+
 // if (currentWord.length === 0) {
 //     player.position = {
 //         x: (platforms[1].position.x + platform.width) / 2,

@@ -19,6 +19,7 @@ class Game {
         this.myQueue = [Game.START_PLATFORM];
         this.platforms = this.platformsOnScreen();
         this.player = [new Player];
+        this.currentPlatform = this.platforms[0];
     }
 
     platformsQueue() {
@@ -48,51 +49,6 @@ class Game {
         return nextPlatform;
     }
 
-
-
-
-
-
-
-
-    currentWord() {
-        return this.platforms[0].word.string;
-    }
-
-    // generatePlatforms() { //i'm gonna need a helper function here to return
-    //     const xPositions = [{x: 150, y: 300}, {x: 600, y: 300}];
-    //     let myPlatforms = [];
-    //     console.log(Game.TEMPWORDBANK)
-
-    //     // this logic below isn't working at all. maybe try separating it.
-    //     while (myPlatforms.length < 2) {  //THIS IS FIRING OFF EVERY PLATFORM BECAUSE THE ONLY CONDITION FOR THE ITERATION IS < 2. AFTER THAT IT'S JUST ITERATING THROUGH THE ENTIRE PLATFORM, REGARDLESS OF MYPLAT LENGTH
-    //         Game.TEMPWORDBANK.forEach(word => {
-    //             myPlatforms.push(new Platform(word, Game.DEFAULT_POS)) // *******
-    //         })
-    //     }
-    //     // return myPlatforms;
-
-    //     //right now this function is making an array with Platform instances with a dummy position, THEN it's going over that array and changing the position again. just generate with a position set.
-
-    //     // debugger
-    //     for (let i = 0; i < Game.NUM_PLATFORMS; i++) {
-    //         let randomSpot = xPositions[Math.floor(Math.random() * 2)];
-    //         if (i === 0) { 
-    //             myPlatforms[i].position = {x: 150, y: 600}
-    //             myPlatforms[i].word.position = {x: 150, y:600}
-    //         } else {
-    //           myPlatforms[i].position = randomSpot;
-    //           myPlatforms[i].word.position = randomSpot;
-    //         }
-    //     }
-    //     // debugger
-
-    //     // console.log(myPlatforms);
-    //     return myPlatforms;
-    // }
-
-    // currentWord = this.words.slice(1)
-
     allObjects() {
         return this.platforms.concat(this.player);
     }
@@ -110,24 +66,22 @@ class Game {
         });
     }
 
-    // for scrolling later - idk if I can dynamically scroll if I'm generating platforms from an array though....
-    // allObjects = platforms.concat(players).concat(words)
-    // allObjects.forEach(object => object.position.y += 5)
+    handleCorrectKey() {
+        this.currentPlatform.handleCorrectKey();
+    }
 
-    // Question for Kyle: when I clearRect and re-draw during the animation loop, won't the platforms/words get re-drawn at their initialized position instead of updated position?
-    // ^regarding question above, this is irrelevant if we don't have a constant scroll. so let's table it for now.
-    // - if I don't want my platforms to reset, I should shift them out of my platforms array after I draw them and instead of calling .draw from within a forEach loop, I should just call .draw on the platforms.shift().
+    handleBadKey() {
+        this.currentPlatform.handleBadKey();
+    }
+
+    goNext() {
+        this.platforms.shift();
+    }
 
 
-// this should probably all go in 1 game loop function / animate function
-    // generatePlatforms() {
-    //     for (let i = 0; i < platformCount; i++) {
-    //         // let platformX = js equivalent of array.sample from two possible X positions
-    //         let platformY = platforms[1].position.y - 300;
-    //         this.platforms.push(new Platform({x: platformX, y: platformY}))
-    //     }
-    // }
 
+
+    // not currently utilized
     removeLowestPlatform() { //this could be in Platform - and you 
         this.platforms.shift(); // and you just call it in game instead
     }    
