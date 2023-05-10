@@ -28,15 +28,15 @@ class Game {
         //if (this.level === 1), obviously more dynamic later with i
 
         return [
-        new Platform('welcome', {x: 10, y: 10}),
-        new Platform('to', {x: 10, y: 10}),
-        new Platform('typer', {x: 10, y: 10}),
-        new Platform('jump', {x: 10, y: 10}),
-        new Platform('here', {x: 10, y: 10}),
-        new Platform('are', {x: 10, y: 10}),
-        new Platform('some', {x: 10, y: 10}),
-        new Platform('warmup', {x: 10, y: 10}),
-        new Platform('words', {x: 10, y: 10})
+        new Platform('welcome', {x: 150, y: 600}),
+        new Platform('to', {x: 600, y: 350}),
+        new Platform('typer', {x: 150, y: 100}),
+        new Platform('jump', {x: 600, y: -150}),
+        new Platform('here', {x: 150, y: -400}),
+        new Platform('are', {x: 600, y: -650}),
+        new Platform('some', {x: 150, y: -900}),
+        new Platform('warmup', {x: 600, y: -1150}),
+        new Platform('words', {x: 150, y: -1400})
         ];
     }
 
