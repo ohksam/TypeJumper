@@ -60,6 +60,16 @@ class Word {
         // fillText(text, x, y, maxWidth)//this maxWidth would be platwidth
     }
 
+    handleCorrectKey() {
+        this.index += 1;
+
+    }
+
+    handleBadKey() {
+        this.index = 0;
+
+    }
+
     // in the for loop that iterates over the words you want on the screen and draws them... if index === 0, send it do a different draw function(?) that'll highlight with red. other words that you don't want them to type will be written in green or something
     // then when you're checking key inputs to see if the user has pressed the correct letters, add each letter to a lettersPressed array,
 

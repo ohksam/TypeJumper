@@ -58,9 +58,6 @@ class Gameplay {
                 console.log('success'); // for testing
                 targetWord = targetWord.slice(1);
                 this.game.handleCorrectKey();
-                if (targetWord.length === 0) {
-                    this.game.goNext();
-                }
             } else {
                 console.log('miss'); //also for testing
                 targetWord = currentWord;

@@ -20,6 +20,8 @@ class Game {
         this.platforms = this.platformsOnScreen();
         this.player = [new Player];
         this.currentPlatform = this.platforms[0];
+        this.counter = 0;
+        this.target = this.currentPlatform.word.string.length;
     }
 
     platformsQueue() {
@@ -67,10 +69,15 @@ class Game {
     }
 
     handleCorrectKey() {
+        this.counter += 1;
+        if (this.counter === this.target) {
+            this.goNext();
+        }
         this.currentPlatform.handleCorrectKey();
     }
 
     handleBadKey() {
+        this.counter = 0;
         this.currentPlatform.handleBadKey();
     }
 
