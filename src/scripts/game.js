@@ -10,7 +10,7 @@ import Word from "./word"
 class Game {
     // static TEMPWORDBANK = ['welcome', 'to', 'typer', 'jump']; // this will eventually get replaced by real wordbank (lol)
     // static START_PLATFORM = new Platform('start', {x: 150, y: 600})
-    static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
+    // static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
 
     constructor(ctx) {
         this.ctx = ctx;
@@ -18,7 +18,7 @@ class Game {
         // this.myQueue = [Game.START_PLATFORM];
         this.index = 0;
         this.platforms = this.currentLevelPlatforms();
-        this.player = [new Player];
+        this.player = new Player();
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
@@ -26,6 +26,8 @@ class Game {
 
     currentLevelPlatforms() {
         //if (this.level === 1), obviously more dynamic later with i
+
+        // return this.level.allPlatforms // or something like that.
 
         return [
         new Platform('welcome', {x: 150, y: 600}),
@@ -96,8 +98,16 @@ class Game {
     
     update(ctx) {   //next snapshot
         this.allObjects().forEach((object) => {
-            object.update.bind(ctx);
+            object.update();
         })
+
+        if (this.platforms[this.index].position.y >= 600) {
+            let dy = this.platforms[this.index].position.y - 600;
+            this.allObjects().forEach((object) => {
+                object.falling = false;
+                object.position.y -= dy;
+            })
+        }
 
         this.draw(ctx)
     }
@@ -117,25 +127,19 @@ class Game {
 
     goNext() {
         console.log('GO NEXT')
-        this.index += 1;
-        // this.platforms.shift();
 
-        // code above this line works fine
-        // code below this line is the messiest shit I've ever written
-        
-        // console.log(this.player)
-        // this.player.position = (this.currentPlatform.position); // this isn't working
-        // console.log(this.player)
-        // this.player.draw(this.ctx);
-        // debugger
-        // this.platforms = this.platforms;
-        // this.platforms = this.platformsOnScreen();
+        this.index += 1;
+ 
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
-        this.player.velocity = {
-            x: 100, 
-            y: 100
-        }
+
+        this.allObjects().forEach(object => {
+            object.falling = true;
+        })
+
+        this.player.position = {x: this.platforms[this.index].position.x + 100, y: this.platforms[this.index].position.y - 50}
+        // debugger
+
         if (this.currentPlatform === undefined) {
             console.log('you win!')
         }

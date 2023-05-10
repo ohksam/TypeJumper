@@ -1,6 +1,7 @@
 class Player {
     static START_X = 260;
-    static START_Y = 550;
+    static START_Y = 500;
+    static GRAVITY = 5;
     constructor() {
         this.position = {
             x: Player.START_X,
@@ -20,16 +21,17 @@ class Player {
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
-    update(ctx) {   //CAUTION: this will not have ctx bound
+    update() {   //CAUTION: this will not have ctx bound
         // this.draw(ctx)
         this.position.y += this.velocity.y
         this.position.x += this.velocity.x
 
-        // if (this.position.y + this.height + this.velocity.y <= canvas.height) {
-        //     this.velocity.y += gravity
-        // } else {
-        //     this.velocity.y = 0
-        // }
+        if (this.position.y + this.height + this.velocity.y <= 600) {
+            this.velocity.y += Player.GRAVITY
+        } else {
+            this.position.y = 600 - this.height;
+            this.velocity.y = 0;
+        }
     }
 }
 

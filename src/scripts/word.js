@@ -82,9 +82,10 @@ class Word {
         // fillText(text, x, y, maxWidth)//this maxWidth would be platwidth
     }
 
-    update() {   //next snapshot
-        // this.draw()
-        // this is where you'll need the functionality of scrolling through the letters and drawing each individually, methinks.
+    update(position) {   //next snapshot
+        this.position.x = position.x;
+        this.position.y = position.y;
+
         //maybe something like this.drawRed() and this.drawGreen()?
         //**remember this is the logic where kyle talked about using a constant that would increment by a couple pixels for each letter individually
     }

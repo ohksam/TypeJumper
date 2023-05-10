@@ -6,6 +6,7 @@ class Platform {
     static HEIGHT = 20;
     static WIDTH = 250;
     static COUNT = 3; //this should probably be in Game.
+    static GRAVITY = 5;
 
     constructor(wordString, {x, y}) {
         this.word = new Word(wordString, {x, y});
@@ -17,6 +18,8 @@ class Platform {
             x: 0,
             y: 0
         }
+
+        this.falling = false;
     }
 
     draw(ctx) { // do i want to pass platform.draw a position as parameter?
@@ -24,13 +27,23 @@ class Platform {
         ctx.fillStyle = "#DEFF55"
         ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
         // throw in word drawing logic here too
-        this.word.draw(ctx)
+        this.word.draw(ctx);
     };
 
     update() {   //next snapshot
+
+        if (this.falling) {
+            this.velocity.y += Platform.GRAVITY;
+        } else {
+            this.velocity.y = 0;
+        }
+
         // this.draw()
         this.position.y += this.velocity.y
         this.position.x += this.velocity.x
+
+        // debugger
+        this.word.update(this.position);
 
         // if (this.position.y + this.height + this.velocity.y >= 600) {
         //     this.velocity.y = 0
