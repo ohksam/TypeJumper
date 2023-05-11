@@ -21,6 +21,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  text-shadow:
+  -1px -1px 0 green,
+   1px -1px 0 green,
+  -1px  1px 0 green,
+   1px  1px 0 green;
 }
 
 #title-container {
@@ -77,6 +82,7 @@ h1 {
   margin: 10px;
   background-repeat: no-repeat;
   background-size: contain;
+  // border: 1px solid white;
 }
 
 #github-link {

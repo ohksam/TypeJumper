@@ -55,6 +55,10 @@ class Game {
         ctx.fillStyle = "#65afd8";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+
+        ctx.strokeStyle = "green";
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
         // debugger
 
         this.allObjects().forEach((object) => {
@@ -105,13 +109,20 @@ class Game {
             object.falling = true;
         })
 
-        this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70}
-        // debugger
-
+        // when revisiting this, we moved line 109's code above 114's to avoid console errors. I need to paint last letter still.
         if (this.currentPlatform === undefined) {
             console.log('you win!')
+            alert('level complete!');
+        } else {
+            this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70};
+            this.target = this.currentPlatform.word.string.length;
+            // this.loadNextLevel();
         }
-        this.target = this.currentPlatform.word.string.length;
+
+        // this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70}
+        // debugger
+
+        // this.target = this.currentPlatform.word.string.length;
     }
 
 
