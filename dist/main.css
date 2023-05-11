@@ -5,6 +5,60 @@
 /*!*****************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (1) ***!
   \*****************************************************************************************************************************************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 body {
   font-family: "Fredoka One", sans-serif;
   margin: 0;
@@ -12,50 +66,86 @@ body {
   background-color: #78c5d6;
 }
 
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+#title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 h1 {
   font-size: 3em;
-  text-align: center;
-  margin-top: 50px;
+  margin: 0;
   color: #fff;
 }
 
-p {
-  font-size: 1.5em;
-  text-align: center;
-  margin-top: 20px;
+#author {
+  font-size: 1.2em;
+  margin: 0;
   color: #fff;
+}
+
+#instructions-box {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 140px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #instructions {
   font-size: 1.2em;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 50px;
-  color: #fff;
+  margin: 0;
+  text-align: center;
 }
 
 #canvas-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
 }
 
-.github-link,
-.linkedin-link {
+#github-link, #linkedin-link {
   display: block;
   width: 30px;
   height: 30px;
-  margin: 20px auto;
+  margin: 10px;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.github-link {
+#github-link {
   background-image: url("path/to/github-logo.png");
 }
 
-.linkedin-link {
+#linkedin-link {
   background-image: url("path/to/linkedin-logo.png");
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+  #author {
+    font-size: 1em;
+  }
+  #instructions-box {
+    width: 140px;
+    height: 100px;
+  }
 }
