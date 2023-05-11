@@ -44,7 +44,7 @@ class Gameplay {
             // let nextLetter = currentWord[0];
 
             // console.log(e.key)
-            console.log(this.currentWord)
+            // console.log(this.currentWord)
             // console.log(this.targetWord)
 
             // just use an index reference here instead of mutating the string value in your words
