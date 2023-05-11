@@ -63,7 +63,7 @@ body {
   font-family: "Fredoka One", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #78c5d6;
+  background-image: url("../../assets/pondBackground.jpg");
 }
 
 #header {
@@ -130,22 +130,9 @@ h1 {
 }
 
 #github-link {
-  background-image: url("path/to/github-logo.png");
+  background-image: url("../../assets/gitHubLogo.png");
 }
 
 #linkedin-link {
-  background-image: url("path/to/linkedin-logo.png");
-}
-
-@media screen and (max-width: 768px) {
-  h1 {
-    font-size: 2em;
-  }
-  #author {
-    font-size: 1em;
-  }
-  #instructions-box {
-    width: 140px;
-    height: 100px;
-  }
+  background-image: url("../../assets/linkedInLogo.png");
 }
