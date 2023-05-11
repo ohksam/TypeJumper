@@ -38,10 +38,10 @@ class Game {
         new Platform('some', {x: 150, y: -900}),
         new Platform('warmup', {x: 600, y: -1150}),
         new Platform('words', {x: 150, y: -1400}),
-        new Platform('array', {x: 600, y: -1650}),
-        new Platform('recursion', {x: 150, y: -1900}),
-        new Platform('iterate', {x: 600, y: -2150}),
-        new Platform('algorithm', {x: 150, y: -2400})
+        new Platform('array', {x: 600, y: -1900}),
+        new Platform('recursion', {x: 150, y: -2150}),
+        new Platform('iterate', {x: 600, y: -2400}),
+        new Platform('algorithm', {x: 150, y: -2650})
         ];
     }
 

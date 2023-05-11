@@ -1,6 +1,6 @@
 class Player {
     static START_X = 240;
-    static START_Y = 500;
+    static START_Y = 400;
     static GRAVITY = 5;
 
     constructor() {
@@ -28,8 +28,7 @@ class Player {
         ctx.drawImage(this.sprite, this.position.x, this.position.y, this.width, this.height)
     }
 
-    update() {   //CAUTION: this will not have ctx bound
-        // this.draw(ctx)
+    update() {   //
         this.position.y += this.velocity.y
         this.position.x += this.velocity.x
 
