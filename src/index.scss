@@ -1,29 +1,58 @@
 @import "./styles/example.scss";
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+
+body {
+  font-family: 'Fredoka One', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #78c5d6;
+}
 
 h1 {
-    display: flex;
-    justify-content: center;
+  font-size: 3em;
+  text-align: center;
+  margin-top: 50px;
+  color: #fff;
 }
 
 p {
-    display: flex;
-    justify-content: center;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 20px;
+  color: #fff;
 }
 
-// canvas {
-//     display: flex;
-//     position: fixed;
-//     left: 100px;
-//     align-self: center;
-//     justify-content: center;
-// }
+#instructions {
+    font-size: 1.2em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50px;
+    color: #fff;
+}
 
 #canvas-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
- }
- 
-//  canvas {
-//     display: inline;
-//  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+//   height: 400px;
+  margin-top: 50px;
+}
+
+.github-link,
+.linkedin-link {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 20px auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.github-link {
+  background-image: url('path/to/github-logo.png');
+}
+
+.linkedin-link {
+  background-image: url('path/to/linkedin-logo.png');
+}
