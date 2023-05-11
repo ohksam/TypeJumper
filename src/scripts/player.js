@@ -1,7 +1,8 @@
 class Player {
-    static START_X = 260;
+    static START_X = 240;
     static START_Y = 500;
     static GRAVITY = 5;
+
     constructor() {
         this.position = {
             x: Player.START_X,
@@ -12,13 +13,19 @@ class Player {
             y: 0
         }
         
-        this.width = 50
-        this.height = 50
+        this.width = 90
+        this.height = 90
+        this.sprite = new Image();
+        this.sprite.src = '../assets/frogSprite.png'
     }
 
     draw(ctx) {
-        ctx.fillStyle = "#9AD914"
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        // ctx.fillStyle = "#9AD914"
+        // ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        // const image = new Image();
+        // image.onload = draw
+
+        ctx.drawImage(this.sprite, this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {   //CAUTION: this will not have ctx bound

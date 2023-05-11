@@ -25,7 +25,11 @@ class Platform {
     draw(ctx) { // do i want to pass platform.draw a position as parameter?
         // debugger
         ctx.fillStyle = "#DEFF55"
-        ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
+        // ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
+        ctx.beginPath();
+        ctx.roundRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT, [6]);
+        ctx.fill();
+        ctx.closePath();
         // throw in word drawing logic here too
         this.word.draw(ctx);
     };

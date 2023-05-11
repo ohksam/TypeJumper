@@ -15,9 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = 1000;  // optimize this for 13-inch macbook pro when the
     canvas.height = 650;  // time comes
 
-    const bgImage = new Image();
-    bgImage.src = '../assets/dogekek.jpg';
-    ctx.drawImage(bgImage, 0, 0);
-
     const gameplay = new Gameplay(ctx).animate();
 })

@@ -2,7 +2,7 @@ import Player from "./player"
 import Platform from "./platform"
 import Word from "./word"
 
-
+//future idea
 // after you chop off the first word element from your platforms array, .push that into a "completedWords" array so that you can keep track of how many words were typed (also this'll help you make sure that your code is working properly)
 // SRS for words that are not perfectly typed, send them back into your wordbank
 // or just make a counter instead of moving the whole word into your array of completedWords. just have completedWords = 0 then ++ when they finish a word.
@@ -26,7 +26,6 @@ class Game {
 
     currentLevelPlatforms() {
         //if (this.level === 1), obviously more dynamic later with i
-
         // return this.level.allPlatforms // or something like that.
 
         return [
@@ -38,44 +37,13 @@ class Game {
         new Platform('are', {x: 600, y: -650}),
         new Platform('some', {x: 150, y: -900}),
         new Platform('warmup', {x: 600, y: -1150}),
-        new Platform('words', {x: 150, y: -1400})
+        new Platform('words', {x: 150, y: -1400}),
+        new Platform('array', {x: 600, y: -1650}),
+        new Platform('recursion', {x: 150, y: -1900}),
+        new Platform('iterate', {x: 600, y: -2150}),
+        new Platform('algorithm', {x: 150, y: -2400})
         ];
     }
-
-
-
-
-
-
-
-
-
-    // platformsQueue() {
-    //     // let myQueue = [Game.START_PLATFORM];
-    //     // debugger
-    //     this.myQueue.push(this.generateNewPlatform());
-    //     // console.log(myQueue)
-    //     return this.myQueue;
-    // }
-
-    // platformsOnScreen() {
-    //     let maxPlats = 2;
-    //     let screenPlats = []; //this is resetting to 0 words
-    //     while (screenPlats.length < maxPlats) {
-    //         screenPlats.push(this.platformsQueue().shift()) // might not work register on the other function though...
-    //     }
-    //     // console.log(screenPlats)
-    //     return screenPlats; 
-    // }
-
-    // generateNewPlatform() {
-    //     let wordString = Game.TEMPWORDBANK.shift(); // this took wordbank word
-
-    //     // let wordObject = new Word(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]); // this took that string and made it a word object and gave it a random position
-
-    //     let nextPlatform = new Platform(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]);
-    //     return nextPlatform;
-    // }
 
     allObjects() {
         return this.platforms.concat(this.player);
@@ -84,7 +52,7 @@ class Game {
     draw(ctx) {
         // debugger
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#81D5FF";
+        ctx.fillStyle = "#65afd8";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // debugger
@@ -137,7 +105,7 @@ class Game {
             object.falling = true;
         })
 
-        this.player.position = {x: this.platforms[this.index].position.x + 100, y: this.platforms[this.index].position.y - 50}
+        this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70}
         // debugger
 
         if (this.currentPlatform === undefined) {
@@ -150,11 +118,10 @@ class Game {
 
 
     // not currently utilized
-    removeLowestPlatform() { //this could be in Platform - and you 
-        this.platforms.shift(); // and you just call it in game instead
-    }    
+    // removeLowestPlatform() { //this could be in Platform - and you 
+    //     this.platforms.shift(); // and you just call it in game instead
+    // }    
 }
-
 
 
 

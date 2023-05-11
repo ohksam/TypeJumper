@@ -59,6 +59,10 @@ table {
   border-spacing: 0;
 }
 
+@font-face {
+  font-family: "CuteFrog";
+  src: url("../../assets/font/CuteFrog.ttf") format("truetype"), url("../../assets/font/CuteFrog.otf") format("opentype");
+}
 body {
   font-family: "Fredoka One", sans-serif;
   margin: 0;

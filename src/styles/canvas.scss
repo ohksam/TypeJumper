@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@font-face {
+  font-family: 'CuteFrog';
+  src: url('../../assets/font/CuteFrog.ttf') format('truetype'),
+       url('../../assets/font/CuteFrog.otf') format('opentype');
+}
+
 
 body {
   font-family: 'Fredoka One', sans-serif;
   margin: 0;
   padding: 0;
-//   background-color: #78c5d6;
   background-image: url('../../assets/pondBackground.jpg');
+  //   background-color: #78c5d6;
+  // background-repeat: no-repeat;
+  // background-size: cover;
 }
 
 #header {

@@ -28,11 +28,6 @@ class Gameplay {
         // each object's update can then call its own draw
         // game.draw can just draw the canvas
 
-
-
-
-        // this.game.draw(this.ctx);    // and this should re-draw all objects after having been scrolled
-        // debugger
         requestAnimationFrame(this.animate.bind(this));
     }
 
