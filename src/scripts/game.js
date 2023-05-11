@@ -49,8 +49,45 @@ class Game {
         return this.platforms.concat(this.player);
     }
 
+    // this is to round out the canvas. we'll do this next time.
+    // draw(ctx) {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //     ctx.fillStyle = "#65afd8";
+    //     ctx.beginPath();
+    //     ctx.roundRect(0, 0, canvas.width, canvas.height, [150]);
+    //     ctx.fill();
+    //     ctx.closePath();
+        
+    //     ctx.strokeStyle = "green";
+    //     ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    //     ctx.beginPath();
+    //     ctx.roundRect(0, 0, canvas.width, canvas.height, [150]);
+    //     ctx.closePath();
+
+    //     this.allObjects().forEach((object) => {
+    //         object.draw(ctx);
+    //     });
+    // }
+
+    // this is to add a gradient instead of a solid background. again, next time
+    // draw(ctx) {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //     const gradient = ctx.createRadialGradient(110, 90, 30, 100, 100, 70);
+
+    //     gradient.addColorStop(0, "#4CAF50");
+    //     gradient.addColorStop(0.9, "#F9A825");
+    //     gradient.addColorStop(1, "#65afd8");
+
+    //     ctx.fillStyle = gradient;
+    //     ctx.fillRect(20, 20, 160, 160);
+
+    //     this.allObjects().forEach((object) => {
+    //         object.draw(ctx);
+    //     });
+    // }
+
     draw(ctx) {
-        // debugger
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#65afd8";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -59,13 +96,9 @@ class Game {
         ctx.strokeStyle = "green";
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-        // debugger
-
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });
-        //draw functionality will not be taken care of by each individual class
-
     }
     
     update(ctx) {   //next snapshot
