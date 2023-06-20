@@ -2,137 +2,162 @@ import Player from "./player"
 import Platform from "./platform"
 import Word from "./word"
 
-
+//future idea
 // after you chop off the first word element from your platforms array, .push that into a "completedWords" array so that you can keep track of how many words were typed (also this'll help you make sure that your code is working properly)
 // SRS for words that are not perfectly typed, send them back into your wordbank
 // or just make a counter instead of moving the whole word into your array of completedWords. just have completedWords = 0 then ++ when they finish a word.
 
 class Game {
-    static TEMPWORDBANK = ['nextword', 'thisShouldBreakTheGame']; // this will eventually get replaced by real wordbank (lol)
-    static DEFAULT_POS = {x: 69, y: 69} // this is probably useless now
-    static START_PLATFORM = new Platform('start', {x: 150, y: 600})
-    static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
+    // static TEMPWORDBANK = ['welcome', 'to', 'typer', 'jump']; // this will eventually get replaced by real wordbank (lol)
+    // static START_PLATFORM = new Platform('start', {x: 150, y: 600})
+    // static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
 
     constructor(ctx) {
         this.ctx = ctx;
         // this.words = []; //this is probably unnecessary
-        this.myQueue = [Game.START_PLATFORM];
-        this.platforms = this.platformsOnScreen();
-        this.player = [new Player];
+        // this.myQueue = [Game.START_PLATFORM];
+        this.index = 0;
+        this.platforms = this.currentLevelPlatforms();
+        this.player = new Player();
+        this.currentPlatform = this.platforms[this.index];
+        this.counter = 0;
+        this.target = this.currentPlatform.word.string.length;
     }
 
-    platformsQueue() {
-        // let myQueue = [Game.START_PLATFORM];
-        // debugger
-        this.myQueue.push(this.generateNewPlatform());
-        // console.log(myQueue)
-        return this.myQueue;
+    currentLevelPlatforms() {
+        //if (this.level === 1), obviously more dynamic later with i
+        // return this.level.allPlatforms // or something like that.
+
+        return [
+        new Platform('welcome', {x: 150, y: 600}),
+        new Platform('to', {x: 600, y: 350}),
+        new Platform('type', {x: 150, y: 100}),
+        new Platform('jumper', {x: 600, y: -150}),
+        new Platform('here', {x: 150, y: -400}),
+        new Platform('are', {x: 600, y: -650}),
+        new Platform('some', {x: 150, y: -900}),
+        new Platform('warmup', {x: 600, y: -1150}),
+        new Platform('words', {x: 150, y: -1400}),
+        new Platform('array', {x: 600, y: -1900}),
+        new Platform('recursion', {x: 150, y: -2150}),
+        new Platform('iterate', {x: 600, y: -2400}),
+        new Platform('algorithm', {x: 150, y: -2650})
+        ];
     }
-
-    platformsOnScreen() {
-        let maxPlats = 2;
-        let screenPlats = [];
-        while (screenPlats.length < maxPlats) {
-            screenPlats.push(this.platformsQueue().shift()) // might not work register on the other function though...
-        }
-        // console.log(screenPlats)
-        return screenPlats; 
-    }
-
-    generateNewPlatform() {
-        let wordString = Game.TEMPWORDBANK.shift(); // this took wordbank word
-
-        // let wordObject = new Word(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]); // this took that string and made it a word object and gave it a random position
-
-        let nextPlatform = new Platform(wordString, Game.NEW_POSITIONS[Math.floor(Math.random() * 2)]);
-        return nextPlatform;
-    }
-
-
-
-
-
-
-
-
-    currentWord() {
-        return this.platforms[0].word.string;
-    }
-
-    // generatePlatforms() { //i'm gonna need a helper function here to return
-    //     const xPositions = [{x: 150, y: 300}, {x: 600, y: 300}];
-    //     let myPlatforms = [];
-    //     console.log(Game.TEMPWORDBANK)
-
-    //     // this logic below isn't working at all. maybe try separating it.
-    //     while (myPlatforms.length < 2) {  //THIS IS FIRING OFF EVERY PLATFORM BECAUSE THE ONLY CONDITION FOR THE ITERATION IS < 2. AFTER THAT IT'S JUST ITERATING THROUGH THE ENTIRE PLATFORM, REGARDLESS OF MYPLAT LENGTH
-    //         Game.TEMPWORDBANK.forEach(word => {
-    //             myPlatforms.push(new Platform(word, Game.DEFAULT_POS)) // *******
-    //         })
-    //     }
-    //     // return myPlatforms;
-
-    //     //right now this function is making an array with Platform instances with a dummy position, THEN it's going over that array and changing the position again. just generate with a position set.
-
-    //     // debugger
-    //     for (let i = 0; i < Game.NUM_PLATFORMS; i++) {
-    //         let randomSpot = xPositions[Math.floor(Math.random() * 2)];
-    //         if (i === 0) { 
-    //             myPlatforms[i].position = {x: 150, y: 600}
-    //             myPlatforms[i].word.position = {x: 150, y:600}
-    //         } else {
-    //           myPlatforms[i].position = randomSpot;
-    //           myPlatforms[i].word.position = randomSpot;
-    //         }
-    //     }
-    //     // debugger
-
-    //     // console.log(myPlatforms);
-    //     return myPlatforms;
-    // }
-
-    // currentWord = this.words.slice(1)
 
     allObjects() {
         return this.platforms.concat(this.player);
     }
 
+    // this is to round out the canvas. we'll do this next time.
+    // draw(ctx) {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //     ctx.fillStyle = "#65afd8";
+    //     ctx.beginPath();
+    //     ctx.roundRect(0, 0, canvas.width, canvas.height, [150]);
+    //     ctx.fill();
+    //     ctx.closePath();
+        
+    //     ctx.strokeStyle = "green";
+    //     ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    //     ctx.beginPath();
+    //     ctx.roundRect(0, 0, canvas.width, canvas.height, [150]);
+    //     ctx.closePath();
+
+    //     this.allObjects().forEach((object) => {
+    //         object.draw(ctx);
+    //     });
+    // }
+
+    // this is to add a gradient instead of a solid background. again, next time
+    // draw(ctx) {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //     const gradient = ctx.createRadialGradient(110, 90, 30, 100, 100, 70);
+
+    //     gradient.addColorStop(0, "#4CAF50");
+    //     gradient.addColorStop(0.9, "#F9A825");
+    //     gradient.addColorStop(1, "#65afd8");
+
+    //     ctx.fillStyle = gradient;
+    //     ctx.fillRect(20, 20, 160, 160);
+
+    //     this.allObjects().forEach((object) => {
+    //         object.draw(ctx);
+    //     });
+    // }
+
     draw(ctx) {
-        // debugger
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#81D5FF";
+        ctx.fillStyle = "#65afd8";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // debugger
+
+        ctx.strokeStyle = "green";
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });
     }
+    
+    update(ctx) {   //next snapshot
+        this.allObjects().forEach((object) => {
+            object.update();
+        })
 
-    // for scrolling later - idk if I can dynamically scroll if I'm generating platforms from an array though....
-    // allObjects = platforms.concat(players).concat(words)
-    // allObjects.forEach(object => object.position.y += 5)
+        if (this.platforms[this.index].position.y >= 600) {
+            let dy = this.platforms[this.index].position.y - 600;
+            this.allObjects().forEach((object) => {
+                object.falling = false;
+                object.position.y -= dy;
+            })
+        }
 
-    // Question for Kyle: when I clearRect and re-draw during the animation loop, won't the platforms/words get re-drawn at their initialized position instead of updated position?
-    // ^regarding question above, this is irrelevant if we don't have a constant scroll. so let's table it for now.
-    // - if I don't want my platforms to reset, I should shift them out of my platforms array after I draw them and instead of calling .draw from within a forEach loop, I should just call .draw on the platforms.shift().
+        this.draw(ctx)
+    }
+
+    handleCorrectKey() {
+        this.counter += 1;
+        this.currentPlatform.handleCorrectKey();
+        if (this.counter === this.target) {
+            this.goNext();
+        }
+    }
+
+    handleBadKey() {
+        this.counter = 0;
+        this.currentPlatform.handleBadKey();
+    }
+
+    goNext() {
+        // console.log('GO NEXT')
+
+        this.index += 1;
+ 
+        this.currentPlatform = this.platforms[this.index];
+        this.counter = 0;
+
+        this.allObjects().forEach(object => {
+            object.falling = true;
+        })
 
 
-// this should probably all go in 1 game loop function / animate function
-    // generatePlatforms() {
-    //     for (let i = 0; i < platformCount; i++) {
-    //         // let platformX = js equivalent of array.sample from two possible X positions
-    //         let platformY = platforms[1].position.y - 300;
-    //         this.platforms.push(new Platform({x: platformX, y: platformY}))
-    //     }
-    // }
+        if (this.currentPlatform === undefined) {
+            alert('level complete!');
+        } else {
+            this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70};
+            this.target = this.currentPlatform.word.string.length;
+            // this.loadNextLevel();
+        }
+        // this.target = this.currentPlatform.word.string.length;
+    }
 
-    removeLowestPlatform() { //this could be in Platform - and you 
-        this.platforms.shift(); // and you just call it in game instead
-    }    
+    // not currently utilized
+    // removeLowestPlatform() { //this could be in Platform - and you 
+    //     this.platforms.shift(); // and you just call it in game instead
+    // }    
 }
-
 
 
 

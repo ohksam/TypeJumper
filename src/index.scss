@@ -1,29 +1,3 @@
-@import "./styles/example.scss";
-
-h1 {
-    display: flex;
-    justify-content: center;
-}
-
-p {
-    display: flex;
-    justify-content: center;
-}
-
-// canvas {
-//     display: flex;
-//     position: fixed;
-//     left: 100px;
-//     align-self: center;
-//     justify-content: center;
-// }
-
-#canvas-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
- }
- 
-//  canvas {
-//     display: inline;
-//  }
+// @import "./styles/example.scss";
+@import "./styles/reset.scss";
+@import "./styles/canvas.scss";

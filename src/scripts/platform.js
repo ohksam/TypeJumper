@@ -6,39 +6,63 @@ class Platform {
     static HEIGHT = 20;
     static WIDTH = 250;
     static COUNT = 3; //this should probably be in Game.
-    // static START_WORD = new Word('start', {x: 150, y: 600})
+    static GRAVITY = 5;
 
-    constructor(word, position) {
-        this.word = new Word(word, position);
+    constructor(wordString, {x, y}) {
+        this.word = new Word(wordString, {x, y});
         this.position = {
-            x: position.x,
-            y: position.y
+            x: x,
+            y: y
         }
-        // this.width = 250
-        // this.height = 20
+        this.velocity = {
+            x: 0,
+            y: 0
+        }
+
+        this.falling = false;
     }
-
-    //setter
-    // set position(newPosition) {
-    //     this._position = {
-    //         x: newPosition.x,
-    //         y: newPosition.y
-    //     };
-    //     this.word.position = {
-    //         x: newPosition.x,
-    //         y: newPosition.y
-    //     }
-    // }
-
-    // platforms = []; // confused here because when gameplay draws these, it'll have 2 hard-coded platforms to start with
 
     draw(ctx) { // do i want to pass platform.draw a position as parameter?
         // debugger
         ctx.fillStyle = "#DEFF55"
-        ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
+        // ctx.fillRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT)
+        ctx.beginPath();
+        ctx.roundRect(this.position.x, this.position.y, Platform.WIDTH, Platform.HEIGHT, [6]);
+        ctx.fill();
+        ctx.closePath();
         // throw in word drawing logic here too
-        this.word.draw(ctx)
-    } 
+        this.word.draw(ctx);
+    };
+
+    update() {   //next snapshot
+
+        if (this.falling) {
+            this.velocity.y += Platform.GRAVITY;
+        } else {
+            this.velocity.y = 0;
+        }
+
+        // this.draw()
+        this.position.y += this.velocity.y
+        this.position.x += this.velocity.x
+
+        // debugger
+        this.word.update(this.position);
+
+        // if (this.position.y + this.height + this.velocity.y >= 600) {
+        //     this.velocity.y = 0
+        // }
+    }
+
+    handleCorrectKey() {
+        this.word.handleCorrectKey();
+        // console.log("platform.Correct")
+    }
+
+    handleBadKey() {
+        this.word.handleBadKey();
+        // console.log("platform.Bad")
+    }
 
 }
 
