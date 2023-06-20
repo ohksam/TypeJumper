@@ -2,20 +2,10 @@ import Player from "./player"
 import Platform from "./platform"
 import Word from "./word"
 
-//future idea
-// after you chop off the first word element from your platforms array, .push that into a "completedWords" array so that you can keep track of how many words were typed (also this'll help you make sure that your code is working properly)
-// SRS for words that are not perfectly typed, send them back into your wordbank
-// or just make a counter instead of moving the whole word into your array of completedWords. just have completedWords = 0 then ++ when they finish a word.
 
 class Game {
-    // static TEMPWORDBANK = ['welcome', 'to', 'typer', 'jump']; // this will eventually get replaced by real wordbank (lol)
-    // static START_PLATFORM = new Platform('start', {x: 150, y: 600})
-    // static NEW_POSITIONS = [{x: 150, y: 300}, {x: 600, y: 300}];
-
     constructor(ctx) {
         this.ctx = ctx;
-        // this.words = []; //this is probably unnecessary
-        // this.myQueue = [Game.START_PLATFORM];
         this.index = 0;
         this.platforms = this.currentLevelPlatforms();
         this.player = new Player();
@@ -25,8 +15,6 @@ class Game {
     }
 
     currentLevelPlatforms() {
-        //if (this.level === 1), obviously more dynamic later with i
-        // return this.level.allPlatforms // or something like that.
 
         return [
         new Platform('welcome', {x: 150, y: 600}),
@@ -49,44 +37,6 @@ class Game {
         return this.platforms.concat(this.player);
     }
 
-    // this is to round out the canvas. we'll do this next time.
-    // draw(ctx) {
-    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //     ctx.fillStyle = "#65afd8";
-    //     ctx.beginPath();
-    //     ctx.roundRect(0, 0, canvas.width, canvas.height, [150]);
-    //     ctx.fill();
-    //     ctx.closePath();
-        
-    //     ctx.strokeStyle = "green";
-    //     ctx.strokeRect(0, 0, canvas.width, canvas.height);
-    //     ctx.beginPath();
-    //     ctx.roundRect(0, 0, canvas.width, canvas.height, [150]);
-    //     ctx.closePath();
-
-    //     this.allObjects().forEach((object) => {
-    //         object.draw(ctx);
-    //     });
-    // }
-
-    // this is to add a gradient instead of a solid background. again, next time
-    // draw(ctx) {
-    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    //     const gradient = ctx.createRadialGradient(110, 90, 30, 100, 100, 70);
-
-    //     gradient.addColorStop(0, "#4CAF50");
-    //     gradient.addColorStop(0.9, "#F9A825");
-    //     gradient.addColorStop(1, "#65afd8");
-
-    //     ctx.fillStyle = gradient;
-    //     ctx.fillRect(20, 20, 160, 160);
-
-    //     this.allObjects().forEach((object) => {
-    //         object.draw(ctx);
-    //     });
-    // }
-
     draw(ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#65afd8";
@@ -101,7 +51,7 @@ class Game {
         });
     }
     
-    update(ctx) {   //next snapshot
+    update(ctx) {   
         this.allObjects().forEach((object) => {
             object.update();
         })
@@ -131,10 +81,7 @@ class Game {
     }
 
     goNext() {
-        // console.log('GO NEXT')
-
         this.index += 1;
- 
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
 
@@ -148,15 +95,8 @@ class Game {
         } else {
             this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70};
             this.target = this.currentPlatform.word.string.length;
-            // this.loadNextLevel();
         }
-        // this.target = this.currentPlatform.word.string.length;
     }
-
-    // not currently utilized
-    // removeLowestPlatform() { //this could be in Platform - and you 
-    //     this.platforms.shift(); // and you just call it in game instead
-    // }    
 }
 
 
