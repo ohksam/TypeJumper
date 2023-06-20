@@ -131,7 +131,7 @@ class Game {
     }
 
     goNext() {
-        console.log('GO NEXT')
+        // console.log('GO NEXT')
 
         this.index += 1;
  
@@ -142,24 +142,16 @@ class Game {
             object.falling = true;
         })
 
-        // when revisiting this, we moved line 109's code above 114's to avoid console errors. I need to paint last letter still.
+
         if (this.currentPlatform === undefined) {
-            console.log('you win!')
             alert('level complete!');
         } else {
             this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70};
             this.target = this.currentPlatform.word.string.length;
             // this.loadNextLevel();
         }
-
-        // this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70}
-        // debugger
-
         // this.target = this.currentPlatform.word.string.length;
     }
-
-
-
 
     // not currently utilized
     // removeLowestPlatform() { //this could be in Platform - and you 

@@ -64,7 +64,7 @@ table {
   src: url("../../assets/font/CuteFrog.ttf") format("truetype"), url("../../assets/font/CuteFrog.otf") format("opentype");
 }
 body {
-  font-family: "Fredoka One", sans-serif;
+  font-family: "Fredoka One";
   margin: 0;
   padding: 0;
   background-image: url("../../assets/pondBackground.jpg");
@@ -86,13 +86,13 @@ body {
 h1 {
   font-size: 3em;
   margin: 0;
-  color: #fff;
+  color: white;
 }
 
 #author {
   font-size: 1.2em;
   margin: 0;
-  color: #fff;
+  color: white;
 }
 
 #instructions-box {
@@ -102,7 +102,7 @@ h1 {
   transform: translateY(-50%);
   width: 180px;
   height: 140px;
-  background-color: #fff;
+  background-color: white;
   padding: 20px;
   border-radius: 10px;
   border: 1px solid #00f6e4;
@@ -110,7 +110,6 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 100px 0px;
   margin-right: 25px;
   padding: 64px 0px;
 }
