@@ -20,15 +20,10 @@ class Player {
     }
 
     draw(ctx) {
-        // ctx.fillStyle = "#9AD914"
-        // ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
-        // const image = new Image();
-        // image.onload = draw
-
         ctx.drawImage(this.sprite, this.position.x, this.position.y, this.width, this.height)
     }
 
-    update() {   //
+    update() {   
         this.position.y += this.velocity.y
         this.position.x += this.velocity.x
 
