@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
 @font-face {
   font-family: 'CuteFrog';
-  src: url('../../assets/font/CuteFrog.ttf') format('truetype'),
-       url('../../assets/font/CuteFrog.otf') format('opentype');
+  src: url('../assets/font/CuteFrog.ttf') format('truetype'),
+       url('../assets/font/CuteFrog.otf') format('opentype');
 }
 
 
@@ -10,7 +10,7 @@ body {
   font-family: 'Fredoka One';
   margin: 0;
   padding: 0;
-  background-image: url('../../assets/pondBackground.jpg');
+  background-image: url('../assets/pondBackground.jpg');
 }
 
 #header {
@@ -89,9 +89,9 @@ h1 {
 }
 
 #github-link {
-  background-image: url('../../assets/gitHubLogo.png');
+  background-image: url('../assets/gitHubLogo.png');
 }
 
 #linkedin-link {
-  background-image: url('../../assets/linkedInLogo.png');
+  background-image: url('../assets/linkedInLogo.png');
 }
