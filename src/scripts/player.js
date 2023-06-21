@@ -1,3 +1,5 @@
+import frogSprite from '../../src/assets/frogSprite.png';
+
 class Player {
     static START_X = 240;
     static START_Y = 400;
@@ -16,7 +18,7 @@ class Player {
         this.width = 90
         this.height = 90
         this.sprite = new Image();
-        this.sprite.src = "../../src/assets/frogSprite.png";
+        this.sprite.src = frogSprite;
     }
 
     draw(ctx) {
