@@ -16,7 +16,7 @@ class Player {
         this.width = 90
         this.height = 90
         this.sprite = new Image();
-        this.sprite.src = "../../src/assets/frogSprite.png";
+        this.sprite.src = "./src/assets/frogSprite.png";
     }
 
     draw(ctx) {
