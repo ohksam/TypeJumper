@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+
+
+
+
+
 @font-face {
-  font-family: 'CuteFrog';
-  src: url('../assets/font/CuteFrog.ttf') format('truetype'),
-       url('../assets/font/CuteFrog.otf') format('opentype');
+  font-family: "CuteFrog";
+  src: url("../src/assets/font/CuteFrog.ttf") format("truetype"), url("../src/assets/font/CuteFrog.otf") format("opentype");
 }
-
-
 body {
-  font-family: 'Fredoka One';
+  font-family: "Fredoka One";
   margin: 0;
   padding: 0;
-  background-image: url('../assets/pondBackground.jpg');
+  background-image: url("../src/assets/pondBackground.jpg");
 }
 
 #header {
@@ -18,16 +20,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  text-shadow:
-  -1px -1px 0 green,
-   1px -1px 0 green,
-  -1px  1px 0 green,
-   1px  1px 0 green;
+  text-shadow: -1px -1px 0 green, 1px -1px 0 green, -1px 1px 0 green, 1px 1px 0 green;
 }
 
 #title-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 h1 {
@@ -57,7 +55,6 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // margin: 100px 0px;
   margin-right: 25px;
   padding: 64px 0px;
 }
@@ -85,13 +82,12 @@ h1 {
   margin: 10px;
   background-repeat: no-repeat;
   background-size: contain;
-  // border: 1px solid white;
 }
 
 #github-link {
-  background-image: url('../assets/gitHubLogo.png');
+  background-image: url("../src/assets/gitHubLogo.png");
 }
 
 #linkedin-link {
-  background-image: url('../assets/linkedInLogo.png');
+  background-image: url("../src/assets/linkedInLogo.png");
 }
