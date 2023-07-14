@@ -1,8 +1,7 @@
 import Platform from "./platform";
 
 class Word {
-    constructor(string, {x, y}) {
-
+    constructor(string, { x, y }) {
         this.string = string;
         this.position = {
             x: x,
@@ -14,34 +13,45 @@ class Word {
     paintLastGreen(ctx) {
         if (this.index < this.string.length - 1) {
             ctx.font = '32px CuteFrog';
-            ctx.fillStyle = '#rgba(255, 255, 255, 0.5)'; 
-            ctx.fillText(this.string.slice(0,this.index), this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            const textToDraw = this.string.slice(0, this.index);
+            const textWidth = ctx.measureText(textToDraw).width;
+            const centerX = this.position.x + (Platform.WIDTH - textWidth) / 2;
+            ctx.fillText(textToDraw, centerX, this.position.y + Platform.HEIGHT, Platform.WIDTH);
         } else if (this.index === this.string.length) {
             ctx.font = '32.px CuteFrog';
             ctx.fillStyle = '#00BD00';
-            ctx.fillText(this.string, this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+            const centerX = this.position.x + (Platform.WIDTH - ctx.measureText(this.string).width) / 2;
+            ctx.fillText(this.string, centerX, this.position.y + Platform.HEIGHT, Platform.WIDTH);
         }
     }
 
     drawGreen(ctx) {
-        for (let i = 0; i < this.index; i++) {
-            
-            ctx.font = '32px CuteFrog';
-            ctx.fillStyle = '#00BD00'; 
-            ctx.fillText(this.string.slice(0,this.index), this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
-        }
+        ctx.font = '32px CuteFrog';
+        ctx.fillStyle = '#00BD00';
+        const textToDraw = this.string.slice(0, this.index);
+        const textWidth = ctx.measureText(textToDraw).width;
+        const centerX = this.position.x + (Platform.WIDTH - textWidth) / 2;
+        ctx.fillText(textToDraw, centerX, this.position.y + Platform.HEIGHT, Platform.WIDTH);
     }
 
     draw(ctx) {
         ctx.font = '32px CuteFrog';
         ctx.fillStyle = '#BF0436';
-        ctx.fillText(this.string, this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+
+        // Calculate the width of the rendered text
+        const textWidth = ctx.measureText(this.string).width;
+
+        // Calculate the x-coordinate to center the text
+        const centerX = this.position.x + (Platform.WIDTH - textWidth) / 2;
+
+        ctx.fillText(this.string, centerX, this.position.y + Platform.HEIGHT, Platform.WIDTH);
 
         this.drawGreen(ctx);
         this.paintLastGreen(ctx);
     }
 
-    update(position) {  
+    update(position) {
         this.position.x = position.x;
         this.position.y = position.y;
     }
@@ -58,6 +68,5 @@ class Word {
         this.index = 0;
     }
 }
-
 
 export default Word;
