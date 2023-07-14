@@ -38,18 +38,38 @@ class Game {
     }
 
     draw(ctx) {
+        // canvas itself
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#65afd8";
+        ctx.fillStyle = "#9fd8f3";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-
+    
+        // Draw darker blue ovals
+        ctx.fillStyle = "#81c6ed";
+        const circleRadius = 100;
+    
+        const positions = [
+            { x: 140, y: 200 },
+            { x: 600, y: 550 },
+            { x: 930, y: 100 }
+        ];
+    
+        positions.forEach((position) => {
+            const x = position.x;
+            const y = position.y;
+            ctx.beginPath();
+            ctx.ellipse(x, y, circleRadius, circleRadius / 2, 0, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    
+        // canvas border
         ctx.strokeStyle = "green";
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
+    
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });
     }
+    
     
     update(ctx) {   
         this.allObjects().forEach((object) => {
