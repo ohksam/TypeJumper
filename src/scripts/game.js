@@ -133,7 +133,7 @@ class Game {
         })
 
 
-        if (this.currentPlatform === undefined) {
+        if (!this.currentPlatform) {
             alert('level complete!');
         } else {
             this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70};
