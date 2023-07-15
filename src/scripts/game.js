@@ -48,9 +48,9 @@ class Game {
         const circleRadius = 80;
     
         const positions = [
-            { x: 140, y: 200 },
-            { x: 600, y: 550 },
-            { x: 930, y: 100 }
+            { x: 140, y: 400 },
+            { x: 800, y: 550 },
+            { x: 580, y: 100 }
         ];
     
         positions.forEach((position) => {
@@ -136,7 +136,7 @@ class Game {
         if (!this.currentPlatform) {
             alert('level complete!');
         } else {
-            this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70};
+            this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 100};
             this.target = this.currentPlatform.word.string.length;
         }
     }
