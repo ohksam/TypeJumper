@@ -1,52 +1,60 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+
+
+
+
+
 @font-face {
-  font-family: 'CuteFrog';
-  src: url('../assets/font/CuteFrog.ttf') format('truetype'),
-       url('../assets/font/CuteFrog.otf') format('opentype');
+  font-family: "CuteFrog";
+  src: url("../src/assets/font/CuteFrog.ttf") format("truetype"), url("../src/assets/font/CuteFrog.otf") format("opentype");
 }
-
-
 body {
-  font-family: 'Fredoka One';
-  margin: 0;
-  padding: 0;
-  background-image: url('../assets/pondBackground.jpg');
+  font-family: "Fredoka One";
+  background-image: url("../src/assets/pondBackground.jpg");
+  display: flex;
+  flex-direction: column;
 }
 
-#header {
+#header-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  // align-items: center;
   padding: 20px;
-  text-shadow:
-  -1px -1px 0 green,
-   1px -1px 0 green,
-  -1px  1px 0 green,
-   1px  1px 0 green;
+  text-shadow: -1px -1px 0 green, 1px -1px 0 green, -1px 1px 0 green, 1px 1px 0 green;
 }
 
 #title-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
 }
 
 h1 {
   font-size: 3em;
-  margin: 0;
   color: white;
 }
 
 #author {
   font-size: 1.2em;
-  margin: 0;
   color: white;
 }
 
+#body-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#left-filler-div {
+  width: 10%
+}
+
+#canvas-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #instructions-box {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
   width: 180px;
   height: 140px;
   background-color: white;
@@ -57,8 +65,6 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // margin: 100px 0px;
-  margin-right: 25px;
   padding: 64px 0px;
 }
 
@@ -70,13 +76,6 @@ h1 {
   line-height: 1.2;
 }
 
-#canvas-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-}
 
 #github-link, #linkedin-link {
   display: block;
@@ -85,13 +84,12 @@ h1 {
   margin: 10px;
   background-repeat: no-repeat;
   background-size: contain;
-  // border: 1px solid white;
 }
 
 #github-link {
-  background-image: url('../assets/gitHubLogo.png');
+  background-image: url("../src/assets/gitHubLogo.png");
 }
 
 #linkedin-link {
-  background-image: url('../assets/linkedInLogo.png');
+  background-image: url("../src/assets/linkedInLogo.png");
 }

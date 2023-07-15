@@ -38,18 +38,61 @@ class Game {
     }
 
     draw(ctx) {
+        // canvas itself
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#65afd8";
+        ctx.fillStyle = "#9fd8f3";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-
+    
+        // Larger ovals
+        const circleColor = "#81c6ed";
+        const circleRadius = 80;
+    
+        const positions = [
+            { x: 140, y: 200 },
+            { x: 600, y: 550 },
+            { x: 930, y: 100 }
+        ];
+    
+        positions.forEach((position) => {
+            const x = position.x;
+            const y = position.y;
+            ctx.fillStyle = circleColor;
+            ctx.beginPath();
+            ctx.ellipse(x, y, circleRadius, circleRadius / 2, 0, 0, Math.PI * 2);
+            ctx.fill();
+    
+            // Small oval on bottom-right
+            const smallOvalX = x + 25;
+            const smallOvalY = y + 20;
+            const smallOvalRadius = 20;
+    
+            ctx.fillStyle = "#68b9e8";
+            ctx.beginPath();
+            ctx.ellipse(smallOvalX, smallOvalY, smallOvalRadius, smallOvalRadius / 2, 0, 0, Math.PI * 2);
+            ctx.fill();
+    
+            // Tiny oval on left side
+            const tinyOvalX = x - 50;
+            const tinyOvalY = y - 10;
+            const tinyOvalRadius = 10;
+    
+            ctx.fillStyle = "#68b9e8";
+            ctx.beginPath();
+            ctx.ellipse(tinyOvalX, tinyOvalY, tinyOvalRadius, tinyOvalRadius / 2, 0, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    
+        // canvas border
         ctx.strokeStyle = "green";
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
+    
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });
     }
+    
+    
+    
     
     update(ctx) {   
         this.allObjects().forEach((object) => {
@@ -90,7 +133,7 @@ class Game {
         })
 
 
-        if (this.currentPlatform === undefined) {
+        if (!this.currentPlatform) {
             alert('level complete!');
         } else {
             this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 70};

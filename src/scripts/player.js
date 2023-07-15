@@ -1,7 +1,7 @@
 class Player {
     static START_X = 240;
     static START_Y = 400;
-    static GRAVITY = 5;
+    static GRAVITY = 3;
 
     constructor() {
         this.position = {

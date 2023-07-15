@@ -1,53 +1,52 @@
 import Platform from "./platform";
 
 class Word {
-    constructor(string, {x, y}) {
-
+    constructor(string, { x, y }) {
         this.string = string;
         this.position = {
             x: x,
             y: y
-        }
+        };
         this.index = 0;
-    }
-
-    paintLastGreen(ctx) {
-        if (this.index < this.string.length - 1) {
-            ctx.font = '32px CuteFrog';
-            ctx.fillStyle = '#rgba(255, 255, 255, 0.5)'; 
-            ctx.fillText(this.string.slice(0,this.index), this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
-        } else if (this.index === this.string.length) {
-            ctx.font = '32.px CuteFrog';
-            ctx.fillStyle = '#00BD00';
-            ctx.fillText(this.string, this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
-        }
-    }
-
-    drawGreen(ctx) {
-        for (let i = 0; i < this.index; i++) {
-            
-            ctx.font = '32px CuteFrog';
-            ctx.fillStyle = '#00BD00'; 
-            ctx.fillText(this.string.slice(0,this.index), this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
+        this.letterStates = {};
+        for (let i = 0; i < this.string.length; i++) {
+            this.letterStates[i] = "red";
         }
     }
 
     draw(ctx) {
         ctx.font = '32px CuteFrog';
-        ctx.fillStyle = '#BF0436';
-        ctx.fillText(this.string, this.position.x + Platform.WIDTH/3.3, this.position.y + Platform.HEIGHT, Platform.WIDTH)
-
-        this.drawGreen(ctx);
-        this.paintLastGreen(ctx);
-    }
-
-    update(position) {  
+      
+        const textWidth = ctx.measureText(this.string).width;
+        const centerX = this.position.x + Platform.WIDTH / 2 - textWidth / 2;
+      
+        let accumulatedWidth = 0; // Accumulated width of the drawn letters
+      
+        for (let i = 0; i < this.string.length; i++) {
+          const letterState = this.letterStates[i];
+      
+          ctx.fillStyle = letterState === 'green' ? '#00BD00' : '#BF0436';
+      
+          const letterX = centerX + accumulatedWidth;
+          ctx.fillText(this.string[i], letterX, this.position.y + Platform.HEIGHT, Platform.WIDTH);
+      
+          // Add the current letter's width to the accumulated width
+          accumulatedWidth += ctx.measureText(this.string[i]).width;
+        }
+      }
+      
+      
+    
+    update(position) {
         this.position.x = position.x;
         this.position.y = position.y;
     }
 
     handleCorrectKey() {
-        this.index += 1;
+        if (this.index < this.string.length) {
+            this.letterStates[this.index] = "green";
+            this.index += 1;
+        }
     }
 
     handleBadKey() {
@@ -56,8 +55,10 @@ class Word {
 
     resetIndex() {
         this.index = 0;
+        for (let i = 0; i < this.string.length; i++) {
+            this.letterStates[i] = "red";
+        }
     }
 }
-
 
 export default Word;
