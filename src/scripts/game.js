@@ -1,6 +1,6 @@
 import Player from "./player"
 import Platform from "./platform"
-import Word from "./word"
+import Level from "./level"
 
 
 class Game {
@@ -92,14 +92,12 @@ class Game {
     }
     
     
-    
-    
     update(ctx) {   
         this.allObjects().forEach((object) => {
             object.update();
         })
 
-        if (this.platforms[this.index].position.y >= 600) {
+        if (this.platforms[this.index]?.position.y >= 600) {
             let dy = this.platforms[this.index].position.y - 600;
             this.allObjects().forEach((object) => {
                 object.falling = false;
@@ -123,25 +121,31 @@ class Game {
         this.currentPlatform.handleBadKey();
     }
 
+    checkLevelComplete() {
+        if (this.index > this.platforms.length - 1) {
+            setTimeout(() => { alert('level complete!') }, 300);
+            return true;
+        }
+        return false;
+    }
+    
     goNext() {
         this.index += 1;
+    
+        if (this.checkLevelComplete()) return;
+    
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
-
+    
         this.allObjects().forEach(object => {
             object.falling = true;
         })
-
-
-        if (!this.currentPlatform) {
-            alert('level complete!');
-        } else {
-            this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 100};
-            this.target = this.currentPlatform.word.string.length;
-        }
+    
+        this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 100};
+        this.target = this.currentPlatform.word.string.length;
     }
+    
+    
 }
 
-
-
-export default Game
+export default Game;
