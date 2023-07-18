@@ -7,31 +7,34 @@ class Game {
     constructor(ctx) {
         this.ctx = ctx;
         this.index = 0;
-        this.platforms = this.currentLevelPlatforms();
-        this.player = new Player();
+        // this.platforms = this.currentLevelPlatforms();
+        this.levelNumber = 1;
+        this.level = new Level(this.levelNumber);
+        this.platforms = this.level.platforms;
+        this.player = new Player(this.level.startingXPosition(), Player.START_Y);
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
     }
 
-    currentLevelPlatforms() {
+    // currentLevelPlatforms() {
 
-        return [
-        new Platform('welcome', {x: 150, y: 600}),
-        new Platform('to', {x: 600, y: 350}),
-        new Platform('type', {x: 150, y: 100}),
-        new Platform('jumper', {x: 600, y: -150}),
-        new Platform('here', {x: 150, y: -400}),
-        new Platform('are', {x: 600, y: -650}),
-        new Platform('some', {x: 150, y: -900}),
-        new Platform('warmup', {x: 600, y: -1150}),
-        new Platform('words', {x: 150, y: -1400}),
-        new Platform('array', {x: 600, y: -1900}),
-        new Platform('recursion', {x: 150, y: -2150}),
-        new Platform('iterate', {x: 600, y: -2400}),
-        new Platform('algorithm', {x: 150, y: -2650})
-        ];
-    }
+    //     return [
+    //     new Platform('welcome', {x: 150, y: 600}),
+    //     new Platform('to', {x: 600, y: 350}),
+    //     new Platform('type', {x: 150, y: 100}),
+    //     new Platform('jumper', {x: 600, y: -150}),
+    //     new Platform('here', {x: 150, y: -400}),
+    //     new Platform('are', {x: 600, y: -650}),
+    //     new Platform('some', {x: 150, y: -900}),
+    //     new Platform('warmup', {x: 600, y: -1150}),
+    //     new Platform('words', {x: 150, y: -1400}),
+    //     new Platform('array', {x: 600, y: -1900}),
+    //     new Platform('recursion', {x: 150, y: -2150}),
+    //     new Platform('iterate', {x: 600, y: -2400}),
+    //     new Platform('algorithm', {x: 150, y: -2650})
+    //     ];
+    // }
 
     allObjects() {
         return this.platforms.concat(this.player);
