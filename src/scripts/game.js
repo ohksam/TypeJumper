@@ -17,25 +17,6 @@ class Game {
         this.target = this.currentPlatform.word.string.length;
     }
 
-    // currentLevelPlatforms() {
-
-    //     return [
-    //     new Platform('welcome', {x: 150, y: 600}),
-    //     new Platform('to', {x: 600, y: 350}),
-    //     new Platform('type', {x: 150, y: 100}),
-    //     new Platform('jumper', {x: 600, y: -150}),
-    //     new Platform('here', {x: 150, y: -400}),
-    //     new Platform('are', {x: 600, y: -650}),
-    //     new Platform('some', {x: 150, y: -900}),
-    //     new Platform('warmup', {x: 600, y: -1150}),
-    //     new Platform('words', {x: 150, y: -1400}),
-    //     new Platform('array', {x: 600, y: -1900}),
-    //     new Platform('recursion', {x: 150, y: -2150}),
-    //     new Platform('iterate', {x: 600, y: -2400}),
-    //     new Platform('algorithm', {x: 150, y: -2650})
-    //     ];
-    // }
-
     allObjects() {
         return this.platforms.concat(this.player);
     }
@@ -120,7 +101,7 @@ class Game {
         }
         if (this.checkLevelComplete()) {
             if (this.checkGameComplete()) {
-                alert('game complete!');
+                this.showModal('levelCompleteModal');
             } else {
                 this.goNextLevel();
             }
@@ -133,12 +114,10 @@ class Game {
     }
 
     checkLevelComplete() {
-        // console.log(`this.index is ${this.index}`)
-        // console.log(`this.platforms.length - 1 is ${this.platforms.length - 1}`)
         if (this.index > this.platforms.length - 1) {
             if (this.levelNumber < 4) {
-                // setTimeout(() => { alert('level complete!') }, 300);
-                alert('level complete!');
+                this.showModal('levelCompleteModal');
+                setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
             }
             return true;
         }
@@ -176,6 +155,17 @@ class Game {
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
+    }
+
+    //modal functions
+    showModal(id) {
+        document.body.style.overflow = 'hidden';
+        document.getElementById(id).style.display = 'block';
+    }
+
+    hideModal(id) {
+        document.getElementById(id).style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 
 

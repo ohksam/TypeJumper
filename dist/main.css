@@ -73,8 +73,9 @@ body {
 #header-container {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1px 1px 0px;
   text-shadow: -1px -1px 0 green, 1px -1px 0 green, -1px 1px 0 green, 1px 1px 0 green;
+  height: 70px;
 }
 
 #title-container {
@@ -84,6 +85,7 @@ body {
 h1 {
   font-size: 3em;
   color: white;
+  margin: 5px;
 }
 
 #author {
@@ -97,37 +99,11 @@ h1 {
   align-items: center;
 }
 
-#left-filler-div {
-  width: 10%;
-}
-
 #canvas-container {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-#instructions-box {
-  width: 180px;
-  height: 140px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #00f6e4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 64px 0px;
-}
-
-#instructions {
-  font-size: 1.2em;
-  margin: 0;
-  text-align: center;
-  color: #5993b1;
-  line-height: 1.2;
 }
 
 #github-link, #linkedin-link {
@@ -145,4 +121,38 @@ h1 {
 
 #linkedin-link {
   background-image: url("../src/assets/linkedInLogo.png");
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  animation: slide-in-out 2s forwards;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+@keyframes slide-in-out {
+  0% {
+    transform: translateX(-100%);
+  }
+  20%, 80% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }

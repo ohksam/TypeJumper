@@ -1,44 +1,76 @@
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./dist/main.css" />
-    <script src="./dist/main.js"></script>
-    <title>TypeJumper</title>
-    <link rel="icon" type="image/x-icon" href="favicon/favicon-16x16.png">
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./dist/main.css" />
+  <script src="./dist/main.js"></script>
+  <title>TypeJumper</title>
+  <link rel="icon" type="image/x-icon" href="favicon/favicon-16x16.png">
+</head>
 
-  <body>
-    <div id="header-container">
-      <div id="title-container">
-        <h1>TypeJumper</h1>
-        <p id="author">by Sam Oh</p>
-      </div>
-      <div id="social-media-container">
-        <a href="https://github.com/ohksam/TypeJumper" target="_blank"><div id="github-link"></div></a>
-        <a href="https://www.linkedin.com/in/sam-oh-0abb8327b/" target="_blank"><div id="linkedin-link"></div></a>
-        
-      </div>
+<body>
+  <header id="header-container">
+    <div id="title-container">
+      <h1>TypeJumper</h1>
+      <p id="author">by Sam Oh</p>
     </div>
-    <div id="body-container">
-      <div id="left-filler-div"></div>
-      <div id="canvas-container">
-        <canvas id="canvas"></canvas>
-      </div>
-      <div id="instructions-box">
-        <p id="instructions">
-          Welcome to TypeJumper!
-          <br>
-          Type the words to advance to the next lily pad!
-          <br>
-          If you hit the incorrect key, your word will reset - accuracy counts!
-        </p>
-      </div>
+    <div id="social-media-container">
+      <a href="https://github.com/ohksam/TypeJumper" target="_blank">
+        <div id="github-link"></div>
+      </a>
+      <a href="https://www.linkedin.com/in/sam-oh-0abb8327b/" target="_blank">
+        <div id="linkedin-link"></div>
+      </a>
     </div>
-  </body>
-  
-  
-  
+  </header>
+
+  <div id="body-container">
+    <div id="canvas-container">
+
+      <canvas id="canvas"></canvas>
+
+      <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+          <h2>Welcome to TypeJumper!</h2>
+          <p>
+            Type the words to advance to the next lily pad!
+            <br>
+            Use shift or caps lock for capital letters and symbols.
+            <br>
+            If you hit a wrong letter, your progress on that word will reset, so type carefully!
+          </p>
+        </div>
+      </div>
+
+      <div id="levelCompleteModal" class="modal">
+        <div class="modal-content">
+          <h2>Level complete!</h2>
+          <p>Loading next level...</p>
+        </div>
+      </div>
+
+      <div id="endGameModal" class="modal">
+        <div class="modal-content">
+          <h2>That's all for now, thanks for playing!</h2>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div id="instructions-box">
+      <p id="instructions">
+        Welcome to TypeJumper!
+        <br>
+        Type the words to advance to the next lily pad!
+        <br>
+        If you hit the incorrect key, your word will reset - accuracy counts!
+      </p>
+    </div> -->
+  </div>
+
+
+</body>
+
 </html>
