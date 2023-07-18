@@ -132,6 +132,7 @@ class Game {
         return false;
     }
     
+    //rename to goNextPlatform?
     goNext() {
         this.index += 1;
     
@@ -147,6 +148,8 @@ class Game {
         this.player.position = {x: this.platforms[this.index].position.x + 80, y: this.platforms[this.index].position.y - 100};
         this.target = this.currentPlatform.word.string.length;
     }
+
+    //and then create a goNextLevel based on checkLevelComplete? hmmm
     
     
 }
