@@ -119,7 +119,11 @@ class Game {
             this.goNextPlatform();
         }
         if (this.checkLevelComplete()) {
-            this.goNextLevel();
+            if (this.checkGameComplete()) {
+                alert('game complete!');
+            } else {
+                this.goNextLevel();
+            }
         }
     }
 
@@ -129,13 +133,20 @@ class Game {
     }
 
     checkLevelComplete() {
-        console.log(`this.index is ${this.index}`)
-        console.log(`this.platforms.length - 1 is ${this.platforms.length - 1}`)
-        if (this.index > this.platforms.length - 1 && this.levelNumber < 4) {
-            setTimeout(() => { alert('level complete!') }, 300);
+        // console.log(`this.index is ${this.index}`)
+        // console.log(`this.platforms.length - 1 is ${this.platforms.length - 1}`)
+        if (this.index > this.platforms.length - 1) {
+            if (this.levelNumber < 4) {
+                // setTimeout(() => { alert('level complete!') }, 300);
+                alert('level complete!');
+            }
             return true;
         }
         return false;
+    }
+
+    checkGameComplete() {
+        return this.levelNumber >= 4;
     }
 
     //rename to goNextPlatform?
@@ -157,18 +168,14 @@ class Game {
 
     //and then create a goNextLevel based on checkLevelComplete? hmmm
     goNextLevel() {
-        if (this.levelNumber < 4) {
-            this.levelNumber += 1;
-            this.level = new Level(this.levelNumber);
-            this.platforms = this.level.platforms;
-            this.player = new Player(this.level.startingXPosition(), Player.START_Y);
-            this.index = 0;
-            this.currentPlatform = this.platforms[this.index];
-            this.counter = 0;
-            this.target = this.currentPlatform.word.string.length;
-        } else {
-            alert("game complete!")
-        }
+        this.levelNumber += 1;
+        this.level = new Level(this.levelNumber);
+        this.platforms = this.level.platforms;
+        this.player = new Player(this.level.startingXPosition(), Player.START_Y);
+        this.index = 0;
+        this.currentPlatform = this.platforms[this.index];
+        this.counter = 0;
+        this.target = this.currentPlatform.word.string.length;
     }
 
 
