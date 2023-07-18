@@ -17,9 +17,12 @@ class Gameplay {
     }
 
     bindKeyHandlers() {
-        let rightChar = false;
+        // let rightChar = false;
         document.addEventListener('keydown', (e) => {
             const keyPressed = e.key;
+            const whitelist = ['Shift', 'CapsLock'];
+
+            if (whitelist.includes(keyPressed)) return;
             
             if (keyPressed === this.targetWord[0]) {
                 this.targetWord = this.targetWord.slice(1);
@@ -35,6 +38,5 @@ class Gameplay {
         })
     }
 }
-
 
 export default Gameplay;
