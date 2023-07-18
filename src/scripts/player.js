@@ -1,12 +1,12 @@
 class Player {
-    static START_X = 240;
+    // static START_X = 240;
     static START_Y = 400;
     static GRAVITY = 3;
 
-    constructor() {
+    constructor(x, y) {
         this.position = {
-            x: Player.START_X,
-            y: Player.START_Y
+            x: x,
+            y: y
         }
         this.velocity = {
             x: 0,
