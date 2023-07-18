@@ -12,11 +12,11 @@ class Level {
         const levelSentences = {
             1: ["welcome", "to", "type", "jumper!", "Here", "are", "some", "warmup", "words:", "array", "iterate", "recursion", "algorithm", "merge_sort"],
 
-            2: ["The", "Array", "object", "enables", "storing", "a", "collection", "of", "multiple", "items", "under", "a", "single", "variable", "name", "and", "has", "members", "for", "performing", "common", "array", "operations."],
+            2: ["The", "Array", "object", "enables", "storing", "a collection", "of", "multiple", "items", "under", "a single", "variable", "name", "and", "has", "members", "for", "performing", "common", "array", "operations."],
 
-            3: ["Loops", "offer", "a", "quick", "and", "easy", "way", "to", "do", "something", "repeatedly. There", "are", "many", "different", "kinds", "of", "loops,", "but", "they", "all", "essentially", "do", "the", "same", "thing:", "they", "repeat", "an", "action", "some", "number", "of", "times."],
+            3: ["Loops", "offer", "a quick", "and", "easy", "way", "to do", "something", "repeatedly.", "There", "are", "many", "different", "kinds", "of", "loops,", "but", "they", "all", "essentially", "do", "the", "same", "thing:", "they", "repeat", "an", "action", "some", "number", "of", "times."],
             
-            4: ["The", "act", "of", "a", "function", "calling", "itself", "is", "known", "as", "recursion.", "It", "can", "be", "used", "to", "solve", "problems", "that", "contain", "smaller", "sub-problems.", "A", "recursive", "function", "can", "receive", "two", "inputs:", "a", "base", "case,", "which", "ends", "recursion,", "or", "a", "recursive", "case,", "which", "resumes", "recursion."]
+            4: ["The", "act", "of a", "function", "calling", "itself", "is", "known", "as", "recursion.", "It", "can", "be", "used", "to", "solve", "problems", "that", "contain", "smaller", "sub-problems.", "A", "recursive", "function", "can", "receive", "two", "inputs:", "a", "base", "case,", "which", "ends", "recursion,", "or a", "recursive", "case,", "which", "resumes", "recursion."]
         };
 
         return levelSentences[levelNumber];
