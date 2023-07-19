@@ -171,7 +171,7 @@ class Game {
     //modal functions
     showModal(id) {
         document.body.style.overflow = 'hidden';
-        document.getElementById(id).style.display = 'block';
+        document.getElementById(id).style.display = 'flex';
     }
 
     hideModal(id) {

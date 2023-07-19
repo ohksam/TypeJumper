@@ -107,21 +107,18 @@ h1 {
   overflow: hidden;
 }
 
-#github-link, #linkedin-link {
-  display: block;
-  width: 30px;
-  height: 30px;
-  margin: 10px;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-#github-link {
-  background-image: url("../src/assets/gitHubLogo.png");
-}
-
-#linkedin-link {
-  background-image: url("../src/assets/linkedInLogo.png");
+#startModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 1;
+  width: 60%;
+  height: 50%;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
 }
 
 .modal {
@@ -144,6 +141,23 @@ h1 {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+}
+
+#github-link, #linkedin-link {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#github-link {
+  background-image: url("../src/assets/gitHubLogo.png");
+}
+
+#linkedin-link {
+  background-image: url("../src/assets/linkedInLogo.png");
 }
 
 @keyframes slide-in-out {
