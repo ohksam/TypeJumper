@@ -7,7 +7,7 @@ class Game {
     constructor(ctx) {
         this.ctx = ctx;
         this.index = 0;
-        // this.platforms = this.currentLevelPlatforms();
+        this.setup();
         this.levelNumber = 1;
         this.level = new Level(this.levelNumber);
         this.platforms = this.level.platforms;
@@ -17,24 +17,27 @@ class Game {
         this.target = this.currentPlatform.word.string.length;
     }
 
-    // currentLevelPlatforms() {
+    setup() {
+        this.showModal('startModal');
+        window.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                this.hideModal('startModal');
+                this.startGame(); 
+            }
+        });
+    }
 
-    //     return [
-    //     new Platform('welcome', {x: 150, y: 600}),
-    //     new Platform('to', {x: 600, y: 350}),
-    //     new Platform('type', {x: 150, y: 100}),
-    //     new Platform('jumper', {x: 600, y: -150}),
-    //     new Platform('here', {x: 150, y: -400}),
-    //     new Platform('are', {x: 600, y: -650}),
-    //     new Platform('some', {x: 150, y: -900}),
-    //     new Platform('warmup', {x: 600, y: -1150}),
-    //     new Platform('words', {x: 150, y: -1400}),
-    //     new Platform('array', {x: 600, y: -1900}),
-    //     new Platform('recursion', {x: 150, y: -2150}),
-    //     new Platform('iterate', {x: 600, y: -2400}),
-    //     new Platform('algorithm', {x: 150, y: -2650})
-    //     ];
-    // }
+    reset() {
+        this.index = 0;
+        this.levelNumber = 1;
+        this.level = new Level(this.levelNumber);
+        this.platforms = this.level.platforms;
+        this.player = new Player(this.level.startingXPosition(), Player.START_Y);
+        this.currentPlatform = this.platforms[this.index];
+        this.counter = 0;
+        this.target = this.currentPlatform.word.string.length;
+    }
+    
 
     allObjects() {
         return this.platforms.concat(this.player);
@@ -114,40 +117,45 @@ class Game {
     handleCorrectKey() {
         this.counter += 1;
         this.currentPlatform.handleCorrectKey();
-
+    
         if (this.counter === this.target) {
             this.goNextPlatform();
         }
         if (this.checkLevelComplete()) {
-            if (this.checkGameComplete()) {
-                alert('game complete!');
-            } else {
-                this.goNextLevel();
-            }
+            this.goNextLevel();
         }
+        // if (this.checkGameComplete()) {
+        //     this.showEndGameModal(); 
+        // }
     }
+    
 
     handleBadKey() {
         this.counter = 0;
         this.currentPlatform.handleBadKey();
     }
 
+    //check if level is complete. if levelNumber > 4, show endgame and return early; else show transition modal 
     checkLevelComplete() {
-        // console.log(`this.index is ${this.index}`)
-        // console.log(`this.platforms.length - 1 is ${this.platforms.length - 1}`)
         if (this.index > this.platforms.length - 1) {
-            if (this.levelNumber < 4) {
-                // setTimeout(() => { alert('level complete!') }, 300);
-                alert('level complete!');
+            this.levelNumber += 1;
+    
+            if (this.levelNumber > 4) {
+                this.showEndGameModal();
+                return true;
             }
+    
+            this.showModal('levelCompleteModal');
+            setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
             return true;
         }
         return false;
     }
+    
 
-    checkGameComplete() {
-        return this.levelNumber >= 4;
-    }
+    // checkGameComplete() {
+    //     return this.levelNumber > 4;
+    // }
 
     //rename to goNextPlatform?
     goNextPlatform() {
@@ -168,7 +176,7 @@ class Game {
 
     //and then create a goNextLevel based on checkLevelComplete? hmmm
     goNextLevel() {
-        this.levelNumber += 1;
+        // this.levelNumber += 1;
         this.level = new Level(this.levelNumber);
         this.platforms = this.level.platforms;
         this.player = new Player(this.level.startingXPosition(), Player.START_Y);
@@ -178,6 +186,27 @@ class Game {
         this.target = this.currentPlatform.word.string.length;
     }
 
+    //modal functions
+    showModal(id) {
+        document.body.style.overflow = 'hidden';
+        document.getElementById(id).style.display = 'flex';
+    }
+
+    hideModal(id) {
+        document.getElementById(id).style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    showEndGameModal() {
+        this.showModal('endGameModal');
+        document.getElementById('endGameModal')
+            .querySelector('button')
+            .addEventListener('click', () => {
+                this.hideModal('endGameModal');
+                this.reset();  // this will reset the game
+                this.setup();  // this will show the startModal again, creating a game loop
+            });
+    }
 
 }
 

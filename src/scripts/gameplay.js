@@ -17,7 +17,6 @@ class Gameplay {
     }
 
     bindKeyHandlers() {
-        // let rightChar = false;
         document.addEventListener('keydown', (e) => {
             const keyPressed = e.key;
             const whitelist = ['Shift', 'CapsLock'];
