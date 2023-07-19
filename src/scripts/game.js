@@ -113,9 +113,9 @@ class Game {
         if (this.checkLevelComplete()) {
             this.goNextLevel();
         }
-        if (this.checkGameComplete()) {
-            this.showEndGameModal(); 
-        }
+        // if (this.checkGameComplete()) {
+        //     this.showEndGameModal(); 
+        // }
     }
     
 
@@ -126,18 +126,24 @@ class Game {
 
     checkLevelComplete() {
         if (this.index > this.platforms.length - 1) {
-            if (this.levelNumber < 4) {
-                this.showModal('levelCompleteModal');
-                setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
+            this.levelNumber += 1;
+    
+            if (this.levelNumber > 4) {
+                this.showEndGameModal();
+                return true;
             }
+    
+            this.showModal('levelCompleteModal');
+            setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
             return true;
         }
         return false;
     }
+    
 
-    checkGameComplete() {
-        return this.levelNumber > 4;
-    }
+    // checkGameComplete() {
+    //     return this.levelNumber > 4;
+    // }
 
     //rename to goNextPlatform?
     goNextPlatform() {
@@ -158,7 +164,7 @@ class Game {
 
     //and then create a goNextLevel based on checkLevelComplete? hmmm
     goNextLevel() {
-        this.levelNumber += 1;
+        // this.levelNumber += 1;
         this.level = new Level(this.levelNumber);
         this.platforms = this.level.platforms;
         this.player = new Player(this.level.startingXPosition(), Player.START_Y);
