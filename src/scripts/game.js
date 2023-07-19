@@ -146,7 +146,7 @@ class Game {
             }
     
             this.showModal('levelCompleteModal');
-            setTimeout(() => this.hideModal('levelCompleteModal'), 1000);
+            setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
             return true;
         }
         return false;
