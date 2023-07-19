@@ -7,6 +7,7 @@ class Game {
     constructor(ctx) {
         this.ctx = ctx;
         this.index = 0;
+        this.setup();
         // this.platforms = this.currentLevelPlatforms();
         this.levelNumber = 1;
         this.level = new Level(this.levelNumber);
@@ -15,6 +16,16 @@ class Game {
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
+    }
+
+    setup() {
+        this.showModal('startModal');
+        window.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                this.hideModal('startModal');
+                this.startGame(); 
+            }
+        });
     }
 
     allObjects() {
@@ -95,18 +106,18 @@ class Game {
     handleCorrectKey() {
         this.counter += 1;
         this.currentPlatform.handleCorrectKey();
-
+    
         if (this.counter === this.target) {
             this.goNextPlatform();
         }
         if (this.checkLevelComplete()) {
-            if (this.checkGameComplete()) {
-                this.showModal('levelCompleteModal');
-            } else {
-                this.goNextLevel();
-            }
+            this.goNextLevel();
+        }
+        if (this.checkGameComplete()) {
+            this.showEndGameModal(); 
         }
     }
+    
 
     handleBadKey() {
         this.counter = 0;
@@ -125,7 +136,7 @@ class Game {
     }
 
     checkGameComplete() {
-        return this.levelNumber >= 4;
+        return this.levelNumber > 4;
     }
 
     //rename to goNextPlatform?
@@ -167,6 +178,17 @@ class Game {
         document.getElementById(id).style.display = 'none';
         document.body.style.overflow = 'auto';
     }
+
+    showEndGameModal() {
+        this.showModal('endGameModal');
+        document.getElementById('endGameModal')
+            .querySelector('button')  // assumes you have a button in the endGameModal
+            .addEventListener('click', () => {
+                this.hideModal('endGameModal');
+                this.setup();  // this will show the startModal again, creating a game loop
+            });
+    }
+    
 
 
 }
