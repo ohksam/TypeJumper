@@ -8,7 +8,6 @@ class Game {
         this.ctx = ctx;
         this.index = 0;
         this.setup();
-        // this.platforms = this.currentLevelPlatforms();
         this.levelNumber = 1;
         this.level = new Level(this.levelNumber);
         this.platforms = this.level.platforms;
