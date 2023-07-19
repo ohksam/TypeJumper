@@ -28,6 +28,18 @@ class Game {
         });
     }
 
+    reset() {
+        this.index = 0;
+        this.levelNumber = 1;
+        this.level = new Level(this.levelNumber);
+        this.platforms = this.level.platforms;
+        this.player = new Player(this.level.startingXPosition(), Player.START_Y);
+        this.currentPlatform = this.platforms[this.index];
+        this.counter = 0;
+        this.target = this.currentPlatform.word.string.length;
+    }
+    
+
     allObjects() {
         return this.platforms.concat(this.player);
     }
@@ -124,6 +136,7 @@ class Game {
         this.currentPlatform.handleBadKey();
     }
 
+    //check if level is complete. if levelNumber > 4, show endgame and return early; else show transition modal 
     checkLevelComplete() {
         if (this.index > this.platforms.length - 1) {
             this.levelNumber += 1;
@@ -134,7 +147,7 @@ class Game {
             }
     
             this.showModal('levelCompleteModal');
-            setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
+            setTimeout(() => this.hideModal('levelCompleteModal'), 1000);
             return true;
         }
         return false;
@@ -188,14 +201,13 @@ class Game {
     showEndGameModal() {
         this.showModal('endGameModal');
         document.getElementById('endGameModal')
-            .querySelector('button')  // assumes you have a button in the endGameModal
+            .querySelector('button')
             .addEventListener('click', () => {
                 this.hideModal('endGameModal');
+                this.reset();  // this will reset the game
                 this.setup();  // this will show the startModal again, creating a game loop
             });
     }
-    
-
 
 }
 

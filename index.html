@@ -13,7 +13,7 @@
 <body>
   <header id="header-container">
     <div id="title-container">
-      <h1>TypeJumper</h1>
+      <h1 id="header-title">TypeJumper</h1>
       <p id="author">by Sam Oh</p>
     </div>
     <div id="social-media-container">
@@ -34,7 +34,7 @@
       <div id="startModal" class="staticModal">
         <h2>Welcome to TypeJumper!</h2>
         <p>
-          Type the words to advance to the next lily pad!
+          Type the letters of each word to advance to the next lily pad!
           <br>
           Use shift or caps lock for capital letters and symbols.
           <br>
@@ -45,16 +45,13 @@
       </div>
 
       <div id="levelCompleteModal" class="modal">
-        <div class="modal-content">
-          <h2>Level complete!</h2>
-          <p>Loading next level...</p>
-        </div>
+        <h2>Level complete!</h2>
+        <p>Loading next level...</p>
       </div>
 
-      <div id="endGameModal" class="modal">
-        <div class="modal-content">
-          <h2>That's all for now, thanks for playing!</h2>
-        </div>
+      <div id="endGameModal" class="staticModal">
+        <h2>That's all for now, thanks for playing!</h2>
+        <button id="restartButton">Click here to play again!</button>
       </div>
 
     </div>
