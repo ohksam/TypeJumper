@@ -15,6 +15,7 @@ class Game {
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
+        this.needsReset = false;
     }
 
     setup() {
@@ -205,6 +206,7 @@ class Game {
                 this.hideModal('endGameModal');
                 this.reset();  // this will reset the game
                 this.setup();  // this will show the startModal again, creating a game loop
+                this.needsReset = true; // gameplay sees this flip and resets the target word
             });
     }
 
