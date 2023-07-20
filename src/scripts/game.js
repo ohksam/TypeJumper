@@ -15,6 +15,7 @@ class Game {
         this.currentPlatform = this.platforms[this.index];
         this.counter = 0;
         this.target = this.currentPlatform.word.string.length;
+        this.needsReset = false;
     }
 
     setup() {
@@ -88,10 +89,6 @@ class Game {
             ctx.fill();
         });
 
-        // canvas border
-        ctx.strokeStyle = "green";
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });
@@ -146,7 +143,7 @@ class Game {
             }
     
             this.showModal('levelCompleteModal');
-            setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
+            setTimeout(() => this.hideModal('levelCompleteModal'), 1500);
             return true;
         }
         return false;
@@ -205,6 +202,7 @@ class Game {
                 this.hideModal('endGameModal');
                 this.reset();  // this will reset the game
                 this.setup();  // this will show the startModal again, creating a game loop
+                this.needsReset = true; // gameplay sees this flip and resets the target word
             });
     }
 

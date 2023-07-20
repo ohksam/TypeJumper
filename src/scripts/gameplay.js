@@ -12,6 +12,7 @@ class Gameplay {
 
     animate() {   
         this.game.update(this.ctx);
+        this.reset();
 
         requestAnimationFrame(this.animate.bind(this));
     }
@@ -35,6 +36,15 @@ class Gameplay {
                 this.game.handleBadKey();
             }
         })
+    }
+
+    // resets targetWord to start at level 1 again
+    reset() {
+        if (this.game.needsReset) {
+            this.currentWord = this.game.currentPlatform.word.string;
+            this.targetWord = this.currentWord;
+            this.game.needsReset = false;
+        }
     }
 }
 
