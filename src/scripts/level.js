@@ -19,6 +19,7 @@ class Level {
         //     4: ["The", "act", "of a", "function", "calling", "itself", "is", "known", "as", "recursion.", "Recursion", "can", "be", "used", "to solve", "problems", "that", "contain", "smaller", "sub-problems.", "A", "recursive", "function", "typically", "consists of", "two", "cases:", "a", "base", "case,", "which", "marks", "the", "termination", "of", "recursion,", "and a", "recursive", "case,", "which", "allows", "the", "function", "to", "call", "itself", "again."]
         // };
 
+        // for testing purposes
         const levelSentences = {
             1: ['test', 'for', 'level', 'one'], 
             2: ['test', 'for', 'level', 'two'], 

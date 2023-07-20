@@ -89,10 +89,6 @@ class Game {
             ctx.fill();
         });
 
-        // canvas border
-        ctx.strokeStyle = "green";
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
         this.allObjects().forEach((object) => {
             object.draw(ctx);
         });
@@ -147,7 +143,7 @@ class Game {
             }
     
             this.showModal('levelCompleteModal');
-            setTimeout(() => this.hideModal('levelCompleteModal'), 2000);
+            setTimeout(() => this.hideModal('levelCompleteModal'), 1500);
             return true;
         }
         return false;

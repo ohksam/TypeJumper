@@ -1,4 +1,3 @@
-import Game from "./scripts/game";
 import Gameplay from "./scripts/gameplay";
 
 document.addEventListener('DOMContentLoaded', () => {
